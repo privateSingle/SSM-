@@ -130,8 +130,9 @@
 					,vercodes: function(value){
 						//获取验证码
 						var zylVerCode = $(".zylVerCode").html();
-						if(value!=zylVerCode){
-							return '验证码错误（区分大小写）';
+						var phoneM = zylVerCode.toLowerCase();
+						if(value.toLowerCase() != phoneM){
+							return '验证码错误';
 						}
 					}
 					,content: function(value){

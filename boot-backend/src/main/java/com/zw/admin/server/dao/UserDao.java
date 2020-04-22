@@ -40,4 +40,7 @@ public interface UserDao {
 	int saveUserRoles(@Param("userId") Long userId, @Param("roleIds") List<Long> roleIds);
 
 	int update(User user);
+
+	@Delete("delete from sys_user where id = #{id}")
+	int delete(Long id);
 }

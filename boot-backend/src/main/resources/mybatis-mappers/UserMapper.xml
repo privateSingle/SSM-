@@ -66,6 +66,9 @@
 			<if test="status != null">
 				status = #{status},
 			</if>
+			<if test="site != null">
+				site = #{site},
+			</if>
 			updateTime = #{updateTime}
 		</set>
 		where t.id = #{id}

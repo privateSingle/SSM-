@@ -22,6 +22,7 @@ public class User extends BaseEntity<Long> {
 	private Date birthday;
 	private Integer sex;
 	private Integer status;
+	private String site;
 
 	public String getUsername() {
 		return username;
@@ -109,6 +110,14 @@ public class User extends BaseEntity<Long> {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public String getSite() {
+		return site;
+	}
+
+	public void setSite(String site) {
+		this.site = site;
 	}
 
 	public interface Status {

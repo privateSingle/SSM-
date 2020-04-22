@@ -60,6 +60,12 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">地址</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="地址" type="text" maxlength="100" name="site">
+                </div>
+            </div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">角色</label>
 				<div class="checkbox" id="roles">
@@ -119,6 +125,7 @@
 					$("#birthday").val(data.birthday);
 					$("#sex").val(data.sex);
 					$("#status").val(data.status);
+					$("#site").val(data.site);
 				}
 			});
 			

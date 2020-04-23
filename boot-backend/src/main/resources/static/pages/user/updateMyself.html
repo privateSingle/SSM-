@@ -57,7 +57,12 @@
                     </select>
                 </div>
             </div>
-
+            <div class="form-group">
+                <label class="col-md-2 control-label">地址</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="地址" type="text" maxlength="100" name="site" id="site">
+                </div>
+            </div>
 			<div class="form-actions">
 				<div class="row" align="center">
 					<div class="col-md-12">
@@ -96,6 +101,7 @@
 				$("#email").val(data.email);
 				$("#birthday").val(data.birthday);
 				$("#sex").val(data.sex);
+				$("#site").val(data.site);
 			}
 		});
 	}

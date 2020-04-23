@@ -7,13 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.zw.admin.server.annotation.LogAnnotation;
 import com.zw.admin.server.dao.UserDao;
@@ -122,6 +116,12 @@ public class UserController {
 	@RequiresPermissions("sys:user:query")
 	public User user(@PathVariable Long id) {
 		return userDao.getById(id);
+	}
+
+	@DeleteMapping("/{id}")
+	@ApiOperation(value = "删除")
+	public void delete(@PathVariable Long id) {
+		userDao.delete(id);
 	}
 
 }

@@ -49,7 +49,7 @@
                                 <tr>
                                 </tr>                       
                                 <tr>
-                                    <th>username</th>
+									<th>账号</th>
                                     <th>昵称</th>
                                     <th>手机号</th>
                                     <th>邮箱</th>
@@ -126,13 +126,35 @@ function init(){
                 		var id = row['id'];
                 		var href = "updateUser.html?id=" + id;
                 		var edit = buttonEdit(href, "sys:user:add", pers);
-                        return edit;
+						var del = buttonDel(id, "", pers);
+						return edit + del;
                   }
                 },
                 
             ],
             "order": [[ 0, "desc" ],[1, "asc"]]
         } );
+}
+
+layui.use('layer', function () {
+	var layer = layui.layer;
+});
+
+function del(id) {
+	layer.confirm('确定要删除吗？', {
+		btn: ['确定', '取消']
+	}, function () {
+		$.ajax({
+			type: 'delete',
+			url: '/users/' + id,
+			success: function (data) {
+				example.ajax.reload();
+				layer.msg("删除成功");
+			}
+		});
+
+		layer.close(1);
+	});
 }
 
 $("#searchBt").click(function(){

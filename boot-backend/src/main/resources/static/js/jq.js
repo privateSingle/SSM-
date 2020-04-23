@@ -29,6 +29,17 @@ function buttonDel(data, permission, pers){
 	return btn.prop("outerHTML");
 }
 
+function buttonPay(data, permission, pers){
+	// if(permission != ""){
+	// 	if ($.inArray(permission, pers) < 0) {
+	// 		return "";
+	// 	}
+	// }
+
+	var btn = $("<button class='layui-btn layui-btn-xs' title='支付' onclick='pay(\"" + data +"\")'><i class='layui-icon'>¥</i></button>");
+	return btn.prop("outerHTML");
+}
+
 function buttonEdit(href, permission, pers){
 	if(permission != ""){
 		if ($.inArray(permission, pers) < 0) {
@@ -44,4 +55,12 @@ function buttonEdit(href, permission, pers){
 function deleteCurrentTab(){
 	var lay_id = $(parent.document).find("ul.layui-tab-title").children("li.layui-this").attr("lay-id");
 	parent.active.tabDelete(lay_id);
+}
+
+function pay(data) {
+	if(confirm("您一共需要支付"+data+"")) {
+		alert("调用支付接口...")
+	}else {
+
+	}
 }

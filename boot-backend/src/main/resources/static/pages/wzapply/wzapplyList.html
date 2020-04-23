@@ -47,6 +47,7 @@
 									<th>物资价格(元)</th>
 									<th>物资最高申请额度</th>
 									<th>申请量</th>
+                                    <th>总额</th>
 									<th>操作</th>
                                 </tr>
                             </thead>
@@ -95,6 +96,13 @@ function init(){
 				{"data" : "wzprice", "defaultContent" : ""},
 				{"data" : "wzbigprice", "defaultContent" : ""},
 				{"data" : "wznum", "defaultContent" : ""},
+                {"data" : "", "defaultContent" : "",
+                "render":function(data, type, row) {
+                    var wzprice = row['wzprice'];
+                    var wznum = row['wznum'];
+                    return wzprice * wznum;
+                }
+                },
 				{ 
 								"data": "", 
 								"defaultContent": "",
@@ -102,14 +110,18 @@ function init(){
 						        "render": function (data, type, row) {
                 		           var id = row['id'];
                 		           var href = "updateWzapply.html?id=" + id;
+                		           var wzprice = row['wzprice'];
+                		           var wznum = row['wznum'];
+                		           var count = wzprice * wznum;
                                    var edit = buttonEdit(href, "", pers);
                 		           var del = buttonDel(id, "", pers);
-                                   return edit + del;
+                		           var pay = buttonPay(count,"",pers);
+                                   return edit + del + pay;
                   	            }		
 							},
                 
             ],
-           "order": [[ 0, "asc" ]]
+           "order": [[ 0, "desc" ]]
         } );
 }
 

@@ -18,7 +18,7 @@ public interface WzapplyDao {
     int update(Wzapply wzapply);
     
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into wzapply(wztype, wzaddress, wzprice, wzbigprice, wznum) values(#{wztype}, #{wzaddress}, #{wzprice}, #{wzbigprice}, #{wznum})")
+    @Insert("insert into wzapply(wztype, wzaddress, wzprice, wzbigprice, wznum, create_time) values(#{wztype}, #{wzaddress}, #{wzprice}, #{wzbigprice}, #{wznum}, #{createTime})")
     int save(Wzapply wzapply);
     
     int count(@Param("params") Map<String, Object> params);

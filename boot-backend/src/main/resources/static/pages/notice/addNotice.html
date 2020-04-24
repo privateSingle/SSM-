@@ -9,9 +9,9 @@
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<fieldset>
 			<div class="form-group">
-				<label class="col-md-2 control-label">title</label>
+				<label class="col-md-2 control-label">标题</label>
 				<div class="col-md-10">
-					<input class="form-control" placeholder="title" type="text" name="title" id="title">
+					<input class="form-control" placeholder="标题" type="text" name="title" id="title">
 				</div>
 			</div>
 
@@ -72,7 +72,7 @@
 			var title = $("#title").val();
 			var status = $("#status").val();
 		    if(title.trim() == ""){
-		       layer.msg("title不能为空")
+		       layer.msg("标题不能为空")
 			   return;
 		    }
 		    if(status.trim() == ""){

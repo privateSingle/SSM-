@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.09 (64 bit)
-MySQL - 5.7.19 : Database - rmas
+MySQL - 5.7.19 : Database - course
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 5.7.19 : Database - rmas
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`rmas` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`course` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */;
 
-USE `rmas`;
+USE `course`;
 
 /*Table structure for table `file_info` */
 
@@ -159,7 +159,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 
 /*Data for the table `qrtz_scheduler_state` */
 
-insert  into `qrtz_scheduler_state`(`SCHED_NAME`,`INSTANCE_NAME`,`LAST_CHECKIN_TIME`,`CHECKIN_INTERVAL`) values ('adminQuartzScheduler','DESKTOP-VBL82161587538918286',1587554128419,15000);
+insert  into `qrtz_scheduler_state`(`SCHED_NAME`,`INSTANCE_NAME`,`LAST_CHECKIN_TIME`,`CHECKIN_INTERVAL`) values ('adminQuartzScheduler','DESKTOP-VBL82161587742916912',1587743156789,15000);
 
 /*Table structure for table `qrtz_simple_triggers` */
 
@@ -242,11 +242,11 @@ CREATE TABLE `sys_logs` (
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   KEY `createTime` (`createTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_logs` */
 
-insert  into `sys_logs`(`id`,`userId`,`module`,`flag`,`remark`,`createTime`) values (1,1,'web端登陆',1,NULL,'2020-04-21 17:07:59'),(2,1,'保存角色',1,NULL,'2020-04-21 17:11:30'),(3,1,'退出',1,NULL,'2020-04-21 17:12:45'),(4,1,'web端登陆',1,NULL,'2020-04-21 17:13:09'),(5,1,'保存角色',1,NULL,'2020-04-21 17:15:04'),(6,1,'保存角色',1,NULL,'2020-04-21 17:16:55'),(7,1,'退出',1,NULL,'2020-04-21 17:19:59'),(8,1,'web端登陆',1,NULL,'2020-04-21 17:20:22'),(9,1,'保存角色',1,NULL,'2020-04-21 17:22:00'),(10,1,'保存角色',1,NULL,'2020-04-21 17:22:08'),(11,1,'保存角色',1,NULL,'2020-04-21 17:22:19'),(12,1,'保存用户',1,NULL,'2020-04-21 17:41:48'),(13,1,'退出',1,NULL,'2020-04-21 17:41:57'),(14,1,'web端登陆',1,NULL,'2020-04-21 17:42:35'),(15,1,'web端登陆',1,NULL,'2020-04-21 18:12:52'),(16,1,'web端登陆',1,NULL,'2020-04-21 18:18:29'),(17,1,'web端登陆',1,NULL,'2020-04-21 18:25:46'),(18,1,'保存菜单',1,NULL,'2020-04-21 18:28:41'),(19,1,'修改菜单',1,NULL,'2020-04-21 18:29:36'),(20,1,'修改菜单',1,NULL,'2020-04-21 18:29:59'),(21,1,'保存角色',1,NULL,'2020-04-21 18:30:45'),(22,1,'保存角色',1,NULL,'2020-04-21 18:31:08'),(23,1,'保存角色',1,NULL,'2020-04-21 18:31:29'),(24,1,'保存角色',1,NULL,'2020-04-21 18:31:36'),(25,1,'保存角色',1,NULL,'2020-04-21 18:32:02'),(26,1,'生成代码',1,NULL,'2020-04-21 18:34:27'),(27,1,'生成代码',1,NULL,'2020-04-21 18:40:01'),(28,1,'web端登陆',1,NULL,'2020-04-21 19:27:27'),(29,1,'退出',1,NULL,'2020-04-21 19:30:48'),(30,1,'web端登陆',1,NULL,'2020-04-21 19:42:17'),(31,1,'web端登陆',1,NULL,'2020-04-22 13:59:17'),(32,1,'修改菜单',1,NULL,'2020-04-22 14:00:04'),(33,1,'保存角色',1,NULL,'2020-04-22 14:01:07'),(34,1,'删除菜单',1,NULL,'2020-04-22 14:02:27'),(35,1,'生成代码',1,NULL,'2020-04-22 14:03:38'),(36,1,'web端登陆',1,NULL,'2020-04-22 14:19:51'),(37,1,'web端登陆',1,NULL,'2020-04-22 14:22:29'),(38,1,'web端登陆',1,NULL,'2020-04-22 14:23:52'),(39,1,'web端登陆',1,NULL,'2020-04-22 14:25:38'),(40,1,'web端登陆',1,NULL,'2020-04-22 14:27:31'),(41,1,'保存用户',1,NULL,'2020-04-22 14:34:02'),(42,1,'退出',1,NULL,'2020-04-22 14:34:08'),(43,4,'web端登陆',1,NULL,'2020-04-22 14:34:19'),(44,4,'退出',1,NULL,'2020-04-22 14:35:12'),(45,1,'web端登陆',1,NULL,'2020-04-22 14:35:24'),(46,1,'web端登陆',1,NULL,'2020-04-22 14:41:55'),(47,1,'web端登陆',1,NULL,'2020-04-22 15:02:42'),(48,1,'修改用户',1,NULL,'2020-04-22 15:03:10'),(49,1,'保存角色',1,NULL,'2020-04-22 15:08:04'),(50,1,'保存菜单',1,NULL,'2020-04-22 15:13:10'),(51,1,'保存菜单',1,NULL,'2020-04-22 15:14:06');
+insert  into `sys_logs`(`id`,`userId`,`module`,`flag`,`remark`,`createTime`) values (1,1,'web端登陆',1,NULL,'2020-04-24 12:26:19'),(2,1,'保存角色',1,NULL,'2020-04-24 12:27:33'),(3,1,'保存角色',1,NULL,'2020-04-24 12:27:44'),(4,1,'保存角色',1,NULL,'2020-04-24 12:28:00'),(5,1,'根据sql在页面显示结果',1,NULL,'2020-04-24 12:38:23'),(6,1,'根据sql在页面显示结果',1,NULL,'2020-04-24 12:38:26'),(7,1,'web端登陆',1,NULL,'2020-04-24 23:03:24'),(8,1,'web端登陆',1,NULL,'2020-04-24 23:03:24'),(9,1,'修改用户',1,NULL,'2020-04-24 23:03:52'),(10,1,'web端登陆',1,NULL,'2020-04-24 23:36:34'),(11,1,'保存公告',1,NULL,'2020-04-24 23:37:03'),(12,1,'web端登陆',1,NULL,'2020-04-24 23:38:24'),(13,1,'修改公告',1,NULL,'2020-04-24 23:38:37'),(14,1,'web端登陆',1,NULL,'2020-04-24 23:42:15');
 
 /*Table structure for table `sys_permission` */
 
@@ -262,11 +262,11 @@ CREATE TABLE `sys_permission` (
   `permission` varchar(50) DEFAULT NULL,
   `sort` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_permission` */
 
-insert  into `sys_permission`(`id`,`parentId`,`name`,`css`,`href`,`type`,`permission`,`sort`) values (1,0,'用户管理','fa-users','pages/user/userList.html',1,'',1),(2,1,'用户查询','fa-user','pages/user/userList.html',1,'',2),(3,2,'查询','','',2,'sys:user:query',100),(4,2,'新增','','',2,'sys:user:add',100),(6,0,'修改密码','fa-pencil-square-o','pages/user/changePassword.html',1,'sys:user:password',4),(7,0,'系统设置','fa-gears','',1,'',5),(8,7,'菜单','fa-cog','pages/menu/menuList.html',1,'',6),(9,8,'查询','','',2,'sys:menu:query',100),(10,8,'新增','','',2,'sys:menu:add',100),(11,8,'删除','','',2,'sys:menu:del',100),(12,7,'角色','fa-user-secret','pages/role/roleList.html',1,'',7),(13,12,'查询','','',2,'sys:role:query',100),(14,12,'新增','','',2,'sys:role:add',100),(15,12,'删除','','',2,'sys:role:del',100),(16,0,'文件管理','fa-folder-open','pages/file/fileList.html',1,'',8),(17,16,'查询','','',2,'sys:file:query',100),(18,16,'删除','','',2,'sys:file:del',100),(19,0,'数据源监控','fa-eye','druid/index.html',1,'',9),(20,0,'接口swagger','fa-file-pdf-o','swagger-ui.html',1,'',10),(21,0,'代码生成','fa-wrench','pages/generate/edit.html',1,'generate:edit',11),(22,0,'公告管理','fa-book','pages/notice/noticeList.html',1,'',12),(23,22,'查询','','',2,'notice:query',100),(24,22,'添加','','',2,'notice:add',100),(25,22,'删除','','',2,'notice:del',100),(26,0,'日志查询','fa-reorder','pages/log/logList.html',1,'sys:log:query',13),(27,0,'邮件管理','fa-envelope','pages/mail/mailList.html',1,'',14),(28,27,'发送邮件','','',2,'mail:send',100),(29,27,'查询','','',2,'mail:all:query',100),(30,0,'定时任务管理','fa-tasks','pages/job/jobList.html',1,'',15),(31,30,'查询','','',2,'job:query',100),(32,30,'新增','','',2,'job:add',100),(33,30,'删除','','',2,'job:del',100),(34,0,'excel导出','fa-arrow-circle-down','pages/excel/sql.html',1,'',16),(35,34,'导出','','',2,'excel:down',100),(36,34,'页面显示数据','','',2,'excel:show:datas',100),(37,0,'字典管理','fa-reddit','pages/dict/dictList.html',1,'',17),(38,37,'查询','','',2,'dict:query',100),(39,37,'新增','','',2,'dict:add',100),(40,37,'删除','','',2,'dict:del',100),(42,0,'申请物资','fa-plus-square','',1,'',100),(43,0,'申请记录','fa-paw','',1,'',100);
+insert  into `sys_permission`(`id`,`parentId`,`name`,`css`,`href`,`type`,`permission`,`sort`) values (1,0,'用户管理','fa-users','pages/user/userList.html',1,'',1),(2,1,'用户查询','fa-user','pages/user/userList.html',1,'',2),(3,2,'查询','','',2,'sys:user:query',100),(4,2,'新增','','',2,'sys:user:add',100),(6,0,'修改密码','fa-pencil-square-o','pages/user/changePassword.html',1,'sys:user:password',4),(7,0,'系统设置','fa-gears','',1,'',5),(8,7,'菜单','fa-cog','pages/menu/menuList.html',1,'',6),(9,8,'查询','','',2,'sys:menu:query',100),(10,8,'新增','','',2,'sys:menu:add',100),(11,8,'删除','','',2,'sys:menu:del',100),(12,7,'角色','fa-user-secret','pages/role/roleList.html',1,'',7),(13,12,'查询','','',2,'sys:role:query',100),(14,12,'新增','','',2,'sys:role:add',100),(15,12,'删除','','',2,'sys:role:del',100),(16,0,'文件管理','fa-folder-open','pages/file/fileList.html',1,'',8),(17,16,'查询','','',2,'sys:file:query',100),(18,16,'删除','','',2,'sys:file:del',100),(19,0,'数据源监控','fa-eye','druid/index.html',1,'',9),(20,0,'接口swagger','fa-file-pdf-o','swagger-ui.html',1,'',10),(21,0,'代码生成','fa-wrench','pages/generate/edit.html',1,'generate:edit',11),(22,0,'公告管理','fa-book','pages/notice/noticeList.html',1,'',12),(23,22,'查询','','',2,'notice:query',100),(24,22,'添加','','',2,'notice:add',100),(25,22,'删除','','',2,'notice:del',100),(26,0,'日志查询','fa-reorder','pages/log/logList.html',1,'sys:log:query',13),(27,0,'邮件管理','fa-envelope','pages/mail/mailList.html',1,'',14),(28,27,'发送邮件','','',2,'mail:send',100),(29,27,'查询','','',2,'mail:all:query',100),(30,0,'定时任务管理','fa-tasks','pages/job/jobList.html',1,'',15),(31,30,'查询','','',2,'job:query',100),(32,30,'新增','','',2,'job:add',100),(33,30,'删除','','',2,'job:del',100),(34,0,'excel导出','fa-arrow-circle-down','pages/excel/sql.html',1,'',16),(35,34,'导出','','',2,'excel:down',100),(36,34,'页面显示数据','','',2,'excel:show:datas',100),(37,0,'字典管理','fa-reddit','pages/dict/dictList.html',1,'',17),(38,37,'查询','','',2,'dict:query',100),(39,37,'新增','','',2,'dict:add',100),(40,37,'删除','','',2,'dict:del',100);
 
 /*Table structure for table `sys_role` */
 
@@ -284,7 +284,7 @@ CREATE TABLE `sys_role` (
 
 /*Data for the table `sys_role` */
 
-insert  into `sys_role`(`id`,`name`,`description`,`createTime`,`updateTime`) values (1,'超级管理员','超级管理员','2017-05-01 13:25:39','2020-04-22 14:01:07'),(2,'用户','普通用户','2017-08-01 21:47:31','2020-04-22 15:08:04'),(3,'单元楼普通管理员','单元楼普通管理员','2020-04-21 17:16:55','2020-04-21 17:22:00');
+insert  into `sys_role`(`id`,`name`,`description`,`createTime`,`updateTime`) values (1,'管理员','管理员','2017-05-01 13:25:39','2020-04-24 12:27:33'),(2,'教师','教师','2017-08-01 21:47:31','2020-04-24 12:27:44'),(3,'学生','学生','2020-04-24 12:28:00','2020-04-24 12:28:00');
 
 /*Table structure for table `sys_role_permission` */
 
@@ -298,7 +298,7 @@ CREATE TABLE `sys_role_permission` (
 
 /*Data for the table `sys_role_permission` */
 
-insert  into `sys_role_permission`(`roleId`,`permissionId`) values (1,1),(1,2),(1,3),(1,4),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),(1,22),(1,23),(1,24),(1,25),(1,26),(1,27),(1,28),(1,29),(1,30),(1,31),(1,32),(1,33),(1,34),(1,35),(1,36),(1,37),(1,38),(1,39),(1,40),(2,1),(2,2),(2,3),(2,6),(2,22),(2,23),(2,24),(2,25);
+insert  into `sys_role_permission`(`roleId`,`permissionId`) values (1,1),(1,2),(1,3),(1,4),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),(1,22),(1,23),(1,24),(1,25),(1,26),(1,27),(1,28),(1,29),(1,30),(1,31),(1,32),(1,33),(1,34),(1,35),(1,36),(1,37),(1,38),(1,39),(1,40),(2,1),(2,2),(2,3),(2,4),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,12),(2,13),(2,14),(2,15),(2,16),(2,17),(2,18),(2,19),(2,20),(2,21),(2,22),(2,23),(2,24),(2,25),(2,30),(2,31),(2,34),(2,36),(3,6);
 
 /*Table structure for table `sys_role_user` */
 
@@ -312,7 +312,7 @@ CREATE TABLE `sys_role_user` (
 
 /*Data for the table `sys_role_user` */
 
-insert  into `sys_role_user`(`userId`,`roleId`) values (1,1),(2,2),(3,2),(4,2);
+insert  into `sys_role_user`(`userId`,`roleId`) values (1,1),(2,3);
 
 /*Table structure for table `sys_user` */
 
@@ -320,27 +320,27 @@ DROP TABLE IF EXISTS `sys_user`;
 
 CREATE TABLE `sys_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL COMMENT '账号',
-  `password` varchar(32) NOT NULL COMMENT '密码',
+  `username` varchar(50) NOT NULL,
+  `password` varchar(32) NOT NULL,
   `salt` varchar(32) NOT NULL,
-  `nickname` varchar(255) DEFAULT NULL COMMENT '昵称',
+  `nickname` varchar(255) DEFAULT NULL,
   `headImgUrl` varchar(255) DEFAULT NULL,
-  `phone` varchar(11) DEFAULT NULL COMMENT '手机号',
-  `telephone` varchar(30) DEFAULT NULL COMMENT '电话',
-  `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
-  `birthday` date DEFAULT NULL COMMENT '生日',
-  `sex` tinyint(1) DEFAULT NULL COMMENT '性别',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '账号状态',
-  `createTime` datetime NOT NULL COMMENT '创建日期',
-  `updateTime` datetime NOT NULL COMMENT '最后修改日期',
-  `site` varchar(255) DEFAULT NULL COMMENT '地址',
+  `phone` varchar(11) DEFAULT NULL,
+  `telephone` varchar(30) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `site` varchar(255) NOT NULL,
+  `sex` tinyint(1) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `createTime` datetime NOT NULL,
+  `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`id`,`username`,`password`,`salt`,`nickname`,`headImgUrl`,`phone`,`telephone`,`email`,`birthday`,`sex`,`status`,`createTime`,`updateTime`,`site`) values (1,'admin','1015ed3b5f1345911198c995f9ad097e','87e03afa1f0122531f729c9a7453f475','管理员',NULL,'','','','1998-07-01',0,1,'2017-04-10 15:21:38','2020-04-22 15:03:10','上海'),(4,'420626199502080019','8efd11887e1271742ea3e188d4ad2728','1177e36be5a7617b501a1e621c8bf57f','普通用户',NULL,'','','',NULL,1,1,'2020-04-22 14:34:02','2020-04-22 14:34:02',NULL);
+insert  into `sys_user`(`id`,`username`,`password`,`salt`,`nickname`,`headImgUrl`,`phone`,`telephone`,`email`,`birthday`,`site`,`sex`,`status`,`createTime`,`updateTime`) values (1,'admin','1015ed3b5f1345911198c995f9ad097e','87e03afa1f0122531f729c9a7453f475','管理员',NULL,'','','','1998-07-01','',0,1,'2017-04-10 15:21:38','2017-07-06 09:20:19'),(2,'user','72c2e62dba72e5f178542313803f33d1','143292269df8c63e2da1a9ba2aeff43c','用户',NULL,'','','',NULL,'',1,1,'2017-08-01 21:47:18','2020-04-24 23:03:53');
 
 /*Table structure for table `t_dict` */
 
@@ -424,9 +424,11 @@ CREATE TABLE `t_notice` (
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `t_notice` */
+
+insert  into `t_notice`(`id`,`title`,`content`,`status`,`createTime`,`updateTime`) values (1,'qweqwe','qwewqeqw&nbsp;',1,'2020-04-24 23:37:04','2020-04-24 23:38:38');
 
 /*Table structure for table `t_notice_read` */
 
@@ -440,6 +442,8 @@ CREATE TABLE `t_notice_read` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `t_notice_read` */
+
+insert  into `t_notice_read`(`noticeId`,`userId`,`createTime`) values (1,1,'2020-04-24 23:38:40');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

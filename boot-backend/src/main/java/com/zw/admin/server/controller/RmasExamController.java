@@ -2,7 +2,6 @@ package com.zw.admin.server.controller;
 
 import java.util.List;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,65 +17,61 @@ import com.zw.admin.server.page.table.PageTableHandler;
 import com.zw.admin.server.page.table.PageTableResponse;
 import com.zw.admin.server.page.table.PageTableHandler.CountHandler;
 import com.zw.admin.server.page.table.PageTableHandler.ListHandler;
-import com.zw.admin.server.dao.RmasStudentThingsDao;
-import com.zw.admin.server.model.RmasStudentThings;
+import com.zw.admin.server.dao.RmasExamDao;
+import com.zw.admin.server.model.RmasExam;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/rmasStudentThingss")
-public class RmasStudentThingsController {
+@RequestMapping("/rmasExams")
+public class RmasExamController {
 
     @Autowired
-    private RmasStudentThingsDao rmasStudentThingsDao;
+    private RmasExamDao rmasExamDao;
 
     @PostMapping
     @ApiOperation(value = "保存")
-    @RequiresPermissions(value = { "things:add" })
-    public RmasStudentThings save(@RequestBody RmasStudentThings rmasStudentThings) {
-        rmasStudentThingsDao.save(rmasStudentThings);
+    public RmasExam save(@RequestBody RmasExam rmasExam) {
+        rmasExamDao.save(rmasExam);
 
-        return rmasStudentThings;
+        return rmasExam;
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id获取")
-    public RmasStudentThings get(@PathVariable Long id) {
-        return rmasStudentThingsDao.getById(id);
+    public RmasExam get(@PathVariable Long id) {
+        return rmasExamDao.getById(id);
     }
 
     @PutMapping
     @ApiOperation(value = "修改")
-    @RequiresPermissions(value = { "things:update" })
-    public RmasStudentThings update(@RequestBody RmasStudentThings rmasStudentThings) {
-        rmasStudentThingsDao.update(rmasStudentThings);
+    public RmasExam update(@RequestBody RmasExam rmasExam) {
+        rmasExamDao.update(rmasExam);
 
-        return rmasStudentThings;
+        return rmasExam;
     }
 
     @GetMapping
     @ApiOperation(value = "列表")
-    @RequiresPermissions(value = { "things:query" })
     public PageTableResponse list(PageTableRequest request) {
         return new PageTableHandler(new CountHandler() {
 
             @Override
             public int count(PageTableRequest request) {
-                return rmasStudentThingsDao.count(request.getParams());
+                return rmasExamDao.count(request.getParams());
             }
         }, new ListHandler() {
 
             @Override
-            public List<RmasStudentThings> list(PageTableRequest request) {
-                return rmasStudentThingsDao.list(request.getParams(), request.getOffset(), request.getLimit());
+            public List<RmasExam> list(PageTableRequest request) {
+                return rmasExamDao.list(request.getParams(), request.getOffset(), request.getLimit());
             }
         }).handle(request);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除")
-    @RequiresPermissions(value = { "things:del" })
     public void delete(@PathVariable Long id) {
-        rmasStudentThingsDao.delete(id);
+        rmasExamDao.delete(id);
     }
 }

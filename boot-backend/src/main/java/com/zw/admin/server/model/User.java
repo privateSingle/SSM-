@@ -21,6 +21,8 @@ public class User extends BaseEntity<Long> {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 	private Integer sex;
+	private Integer type;
+	private String jzId;
 	private Integer status;
 	private String site;
 
@@ -103,6 +105,14 @@ public class User extends BaseEntity<Long> {
 	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
+
+	public Integer getType() { return type; }
+
+	public void setType(Integer type) { this.type = type; }
+
+	public String getJzId() { return jzId; }
+
+	public void setJzId(String jzId) { this.jzId = jzId; }
 
 	public Integer getStatus() {
 		return status;

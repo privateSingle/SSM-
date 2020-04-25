@@ -63,6 +63,12 @@
 			<if test="sex != null">
 				sex = #{sex},
 			</if>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="jzId != null">
+				jzId = #{jzId},
+			</if>
 			<if test="status != null">
 				status = #{status},
 			</if>

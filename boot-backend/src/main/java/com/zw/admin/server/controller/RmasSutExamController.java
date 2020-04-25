@@ -1,7 +1,12 @@
 package com.zw.admin.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.zw.admin.server.dao.UserDao;
+import com.zw.admin.server.model.User;
+import com.zw.admin.server.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +33,9 @@ public class RmasSutExamController {
 
     @Autowired
     private RmasSutExamDao rmasSutExamDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @PostMapping
     @ApiOperation(value = "保存")
@@ -64,6 +72,60 @@ public class RmasSutExamController {
 
             @Override
             public List<RmasSutExam> list(PageTableRequest request) {
+                return rmasSutExamDao.list(request.getParams(), request.getOffset(), request.getLimit());
+            }
+        }).handle(request);
+    }
+
+
+    @GetMapping("/mySturmasSutExams")
+    @ApiOperation(value = "我的孩子成绩列表")
+    public PageTableResponse myStuCjList(PageTableRequest request) {
+
+        return new PageTableHandler(new CountHandler() {
+
+            @Override
+            public int count(PageTableRequest request) {
+                //获取当前登录人的Id
+                User user =  UserUtil.getCurrentUser();
+                List<String> sutdIdList = new ArrayList<>();
+                if(user != null) {
+                    String jzId = user.getUsername();
+                    List<User> userList = userDao.getUserListToJzId(jzId);
+                    for(int i = 0;i<userList.size();i++) {
+                        String stuId = userList.get(i).getUsername();
+                        sutdIdList.add(stuId);
+                    }
+                }
+                Map<String, Object>  map = request.getParams();
+                if(sutdIdList.size() != 0 ) {
+                    map.put("stuIdList",sutdIdList);
+                }else {
+                    map.put("stuIdList",null);
+                }
+
+                return rmasSutExamDao.count(request.getParams());
+            }
+        }, new ListHandler() {
+
+            @Override
+            public List<RmasSutExam> list(PageTableRequest request) {
+                User u2 = UserUtil.getCurrentUser();
+                List<String> sutdIdLIst2 = new ArrayList<>();
+                if(u2 != null) {
+                    String jzId = u2.getUsername();
+                    List<User> userList2 = userDao.getUserListToJzId(jzId);
+                    for(int j = 0;j<userList2.size(); j ++) {
+                        sutdIdLIst2.add(userList2.get(j).getUsername());
+                    }
+                    Map<String, Object>  map = request.getParams();
+                    if(sutdIdLIst2.size() !=0) {
+                        map.put("stuIdList",sutdIdLIst2);
+                    }else {
+                        map.put("stuIdList",null);
+                    }
+
+                }
                 return rmasSutExamDao.list(request.getParams(), request.getOffset(), request.getLimit());
             }
         }).handle(request);

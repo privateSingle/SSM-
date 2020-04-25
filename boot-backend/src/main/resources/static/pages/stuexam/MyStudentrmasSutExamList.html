@@ -82,7 +82,7 @@
 									<th>评语</th>
 									<th>创建时间</th>
 									<th>修改时间</th>
-									<th>操作</th>
+<!--									<th>操作</th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,7 +124,7 @@ function init(){
                 "url": "/js/plugin/datatables/Chinese.lang"
             },
         	"ajax": {
-        		"url" : "/rmasSutExams",
+        		"url" : "/rmasSutExams/mySturmasSutExams",
         		"type":"get",
         		"data":function(d){
     				// d.id = $("#id").val();
@@ -182,19 +182,19 @@ function init(){
 				{"data" : "context", "defaultContent" : ""},
 				{"data" : "createTime", "defaultContent" : ""},
 				{"data" : "updateTime", "defaultContent" : ""},
-				{ 
-								"data": "", 
-								"defaultContent": "",
-								"width":"100",
-								"orderable":false,
-						        "render": function (data, type, row) {
-                		           var id = row['id'];
-                		           var href = "updateRmasSutExam.html?id=" + id;
-                                   var edit = buttonEdit(href, "", pers);
-                		           var del = buttonDel(id, "", pers);
-                                   return edit + del;
-                  	            }		
-							},
+				// {
+				// 				"data": "",
+				// 				"defaultContent": "",
+				// 				"width":"100",
+				// 				"orderable":false,
+				// 		        "render": function (data, type, row) {
+                // 		           var id = row['id'];
+                // 		           var href = "updateRmasSutExam.html?id=" + id;
+                //                    var edit = buttonEdit(href, "", pers);
+                // 		           var del = buttonDel(id, "", pers);
+                //                    return edit + del;
+                //   	            }
+				// 			},
                 
             ],
            "order": [[ 16, "desc" ]]

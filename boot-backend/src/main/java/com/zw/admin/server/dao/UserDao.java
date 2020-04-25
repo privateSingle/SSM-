@@ -17,7 +17,7 @@ import com.zw.admin.server.model.User;
 public interface UserDao {
 
 	@Options(useGeneratedKeys = true, keyProperty = "id")
-	@Insert("insert into sys_user(username, password, salt, site, nickname, headImgUrl, phone, telephone, email, birthday, sex, status, createTime, updateTime) values(#{username}, #{password}, #{salt}, #{site}, #{nickname}, #{headImgUrl}, #{phone}, #{telephone}, #{email}, #{birthday}, #{sex}, #{status}, now(), now())")
+	@Insert("insert into sys_user(username, password, salt, site, nickname, headImgUrl, phone, telephone, email, birthday, sex, type, jzId, status, createTime, updateTime) values(#{username}, #{password}, #{salt}, #{site}, #{nickname}, #{headImgUrl}, #{phone}, #{telephone}, #{email}, #{birthday}, #{sex}, #{type}, #{jzId}, #{status}, now(), now())")
 	int save(User user);
 
 	@Select("select * from sys_user t where t.id = #{id}")
@@ -25,6 +25,9 @@ public interface UserDao {
 
 	@Select("select * from sys_user t where t.username = #{username}")
 	User getUser(String username);
+
+	@Select("select * from sys_user t where t.jzId = #{jzId}")
+	List<User> getUserListToJzId(String jzId);
 
 	@Update("update sys_user t set t.password = #{password} where t.id = #{id}")
 	int changePassword(@Param("id") Long id, @Param("password") String password);

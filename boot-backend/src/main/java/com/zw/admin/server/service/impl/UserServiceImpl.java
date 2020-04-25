@@ -64,6 +64,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<User> getUserListToJzId(String jzId) {
+		return userDao.getUserListToJzId(jzId);
+	}
+
+
+	@Override
 	public void changePassword(String username, String oldPassword, String newPassword) {
 		User u = userDao.getUser(username);
 		if (u == null) {

@@ -188,7 +188,7 @@
 			<div class='form-group'>
 				<label class='col-md-2 control-label'>学生编号</label>
 				<div class='col-md-10'>
-					<input class='form-control' placeholder='stuId' type='text' name='stuId' id='stuId' data-bv-notempty='true' data-bv-notempty-message='stuId 不能为空'>
+					<input class='form-control' placeholder='stuId' type='text' name='stuId' id='stuId' data-bv-notempty='true' data-bv-notempty-message='stuId 不能为空' onblur="selectUserName()">
 				</div>
 			</div>
 			<div class='form-group'>
@@ -364,7 +364,37 @@
 				}
 			});
 		}
-		
+
+		function selectUserName() {
+
+			var id = $('#stuId').val();
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/users/userName/'+id,
+					async : false,
+					success : function(data) {
+						if(data != null&& data != "") {
+							$("#stuName").val(data.username);
+						}else {
+							alert("未查询到该学生编号["+id+"]对应的学生信息！");
+							$("#stuName").val("该生未通过校验");
+						}
+						// $("#id").val(data.id);
+						// $("#username").val(data.username);
+						// $("#nickname").val(data.nickname);
+						// $("#phone").val(data.phone);
+						// $("#telephone").val(data.telephone);
+						// $("#email").val(data.email);
+						// $("#birthday").val(data.birthday);
+						// $("#sex").val(data.sex);
+						// $("#status").val(data.status);
+						// $("#site").val(data.site);
+					}
+				});
+
+			}
+		}
 	</script>
 </body>
 </html>

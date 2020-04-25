@@ -24,51 +24,57 @@
 				and term = #{params.term} 
 			</if>
 			<if test="params.stuId != null and params.stuId != ''">
-				and stuId = #{params.stuId} 
+			and stuId = #{params.stuId}
+			</if>
+			<if test="params.stuIdList != null and params.stuIdList.size > 0">
+				and stuId in
+				<foreach collection="params.stuIdList" item="id" index="index" open="(" close=")" separator=",">
+					#{id}
+				</foreach>
 			</if>
 			<if test="params.stuName != null and params.stuName != ''">
-				and stuName = #{params.stuName} 
+				and stuName = #{params.stuName}
 			</if>
 			<if test="params.yuwen != null and params.yuwen != ''">
-				and yuwen = #{params.yuwen} 
+				and yuwen = #{params.yuwen}
 			</if>
 			<if test="params.yuwenJc != null and params.yuwenJc != ''">
-				and yuwenJc = #{params.yuwenJc} 
+				and yuwenJc = #{params.yuwenJc}
 			</if>
 			<if test="params.yuwenyd != null and params.yuwenyd != ''">
-				and yuwenyd = #{params.yuwenyd} 
+				and yuwenyd = #{params.yuwenyd}
 			</if>
 			<if test="params.yuwenZw != null and params.yuwenZw != ''">
-				and yuwenZw = #{params.yuwenZw} 
+				and yuwenZw = #{params.yuwenZw}
 			</if>
 			<if test="params.shuxue != null and params.shuxue != ''">
-				and shuxue = #{params.shuxue} 
+				and shuxue = #{params.shuxue}
 			</if>
 			<if test="params.shuxueXz != null and params.shuxueXz != ''">
-				and shuxueXz = #{params.shuxueXz} 
+				and shuxueXz = #{params.shuxueXz}
 			</if>
 			<if test="params.shuxueJs != null and params.shuxueJs != ''">
-				and shuxueJs = #{params.shuxueJs} 
+				and shuxueJs = #{params.shuxueJs}
 			</if>
 			<if test="params.english != null and params.english != ''">
-				and english = #{params.english} 
+				and english = #{params.english}
 			</if>
 			<if test="params.sipin != null and params.sipin != ''">
-				and sipin = #{params.sipin} 
+				and sipin = #{params.sipin}
 			</if>
 			<if test="params.zf != null and params.zf != ''">
-				and zf = #{params.zf} 
+				and zf = #{params.zf}
 			</if>
 			<if test="params.context != null and params.context != ''">
-				and context = #{params.context} 
+				and context = #{params.context}
 			</if>
 			<if test="params.createTime != null and params.createTime != ''">
-				and createTime = #{params.createTime} 
+				and createTime = #{params.createTime}
 			</if>
 			<if test="params.updateTime != null and params.updateTime != ''">
-				and updateTime = #{params.updateTime} 
+				and updateTime = #{params.updateTime}
 			</if>
-		
+
 		</where>
 	</sql>
 
@@ -88,64 +94,64 @@
 		update rmas_sut_exam t
 		<set>
 			<if test="examId != null">
-				examId = #{examId}, 
+				examId = #{examId},
 			</if>
 			<if test="examName != null">
-				examName = #{examName}, 
+				examName = #{examName},
 			</if>
 			<if test="examDate != null">
-				examDate = #{examDate}, 
+				examDate = #{examDate},
 			</if>
 			<if test="grade != null">
-				grade = #{grade}, 
+				grade = #{grade},
 			</if>
 			<if test="term != null">
-				term = #{term}, 
+				term = #{term},
 			</if>
 			<if test="stuId != null">
-				stuId = #{stuId}, 
+				stuId = #{stuId},
 			</if>
 			<if test="stuName != null">
-				stuName = #{stuName}, 
+				stuName = #{stuName},
 			</if>
 			<if test="yuwen != null">
-				yuwen = #{yuwen}, 
+				yuwen = #{yuwen},
 			</if>
 			<if test="yuwenJc != null">
-				yuwenJc = #{yuwenJc}, 
+				yuwenJc = #{yuwenJc},
 			</if>
 			<if test="yuwenyd != null">
-				yuwenyd = #{yuwenyd}, 
+				yuwenyd = #{yuwenyd},
 			</if>
 			<if test="yuwenZw != null">
-				yuwenZw = #{yuwenZw}, 
+				yuwenZw = #{yuwenZw},
 			</if>
 			<if test="shuxue != null">
-				shuxue = #{shuxue}, 
+				shuxue = #{shuxue},
 			</if>
 			<if test="shuxueXz != null">
-				shuxueXz = #{shuxueXz}, 
+				shuxueXz = #{shuxueXz},
 			</if>
 			<if test="shuxueJs != null">
-				shuxueJs = #{shuxueJs}, 
+				shuxueJs = #{shuxueJs},
 			</if>
 			<if test="english != null">
-				english = #{english}, 
+				english = #{english},
 			</if>
 			<if test="sipin != null">
-				sipin = #{sipin}, 
+				sipin = #{sipin},
 			</if>
 			<if test="zf != null">
-				zf = #{zf}, 
+				zf = #{zf},
 			</if>
 			<if test="context != null">
-				context = #{context}, 
+				context = #{context},
 			</if>
 			<if test="createTime != null">
-				createTime = #{createTime}, 
+				createTime = #{createTime},
 			</if>
 			<if test="updateTime != null">
-				updateTime = #{updateTime}, 
+				updateTime = #{updateTime},
 			</if>
 
 		</set>

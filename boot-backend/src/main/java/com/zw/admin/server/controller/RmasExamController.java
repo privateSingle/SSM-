@@ -2,6 +2,7 @@ package com.zw.admin.server.controller;
 
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class RmasExamController {
 
     @PostMapping
     @ApiOperation(value = "保存")
+    @RequiresPermissions(value = { "exam:add" })
     public RmasExam save(@RequestBody RmasExam rmasExam) {
         rmasExamDao.save(rmasExam);
 
@@ -45,6 +47,7 @@ public class RmasExamController {
 
     @PutMapping
     @ApiOperation(value = "修改")
+    @RequiresPermissions(value = { "exam:update" })
     public RmasExam update(@RequestBody RmasExam rmasExam) {
         rmasExamDao.update(rmasExam);
 
@@ -53,6 +56,7 @@ public class RmasExamController {
 
     @GetMapping
     @ApiOperation(value = "列表")
+    @RequiresPermissions(value = { "exam:query" })
     public PageTableResponse list(PageTableRequest request) {
         return new PageTableHandler(new CountHandler() {
 
@@ -71,6 +75,7 @@ public class RmasExamController {
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除")
+    @RequiresPermissions(value = { "exam:del" })
     public void delete(@PathVariable Long id) {
         rmasExamDao.delete(id);
     }

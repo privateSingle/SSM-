@@ -118,6 +118,14 @@ public class UserController {
 		return userDao.getById(id);
 	}
 
+	@ApiOperation(value = "根据用户名获取用户")
+	@GetMapping("/userName/{userName}")
+	@RequiresPermissions("sys:user:query")
+	public User userName(@PathVariable String userName) {
+		return userDao.getUser(userName);
+	}
+
+
 	@DeleteMapping("/{id}")
 	@ApiOperation(value = "删除")
 	public void delete(@PathVariable Long id) {

@@ -18,14 +18,14 @@
 	                   			<td>
 		                   			<form class="form-inline" onsubmit="return false">
 										<div class="form-group">
-											编号：
+											id：
 											<input id="id" type="text" class="form-control" placeholder="id">
 											<button id="searchBt" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe615;</i>搜索</button>
 										</div>
 									</form>
 	                   			</td>
 	                   			<td align="right">
-	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addRmasExam.html'">
+	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addRmasSutExam.html'">
                                       <i class="layui-icon">&#xe608;</i> 添加
                                     </button>
 	                   			</td>
@@ -42,13 +42,26 @@
                                 </tr>                       
                                 <tr>
 									<th>编号</th>
-									<th>名称</th>
+<!--									<th>examId</th>-->
+									<th>考试名称</th>
+									<th>开始时间</th>
 									<th>年级</th>
 									<th>学期</th>
-                                    <th>考试时间</th>
-									<th>发布时间</th>
-									<th>备注</th>
-<!--								<th>updateTime</th>-->
+									<th>学生编号</th>
+									<th>学生姓名</th>
+									<th>语文</th>
+									<th>语文-基础题</th>
+									<th>语文-阅读题</th>
+									<th>语文-作文题</th>
+									<th>数学</th>
+									<th>数学-选择题</th>
+									<th>数学-计算题</th>
+									<th>英语</th>
+									<th>思想品德</th>
+									<th>总分</th>
+									<th>评语</th>
+									<th>创建时间</th>
+									<th>修改时间</th>
 									<th>操作</th>
                                 </tr>
                             </thead>
@@ -72,12 +85,9 @@
 <script type="text/javascript">
 var pers = checkPermission();
 
-
-
 var example;
-
 function init(){
-	example =
+	example = 
     	$('#dt-table').DataTable({
         	"searching": false,
         	"processing": false,
@@ -86,7 +96,7 @@ function init(){
                 "url": "/js/plugin/datatables/Chinese.lang"
             },
         	"ajax": {
-        		"url" : "/rmasExams",
+        		"url" : "/rmasSutExams",
         		"type":"get",
         		"data":function(d){
     				d.id = $("#id").val();
@@ -95,42 +105,55 @@ function init(){
         	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
             "columns": [
 				{"data" : "id", "defaultContent" : ""},
+				// {"data" : "examId", "defaultContent" : "","width":"100"},
 				{"data" : "examName", "defaultContent" : ""},
+				{"data" : "examDate", "defaultContent" : ""},
 				{"data" : "grade", "defaultContent" : "",
-                    "render": function (data, type, row) {
-                        if(data == 1) {return "一年级";
-                        }else if(data == 2) {return "二年级";}
-                        else if(data == 3) {return "三年级";}
-                        else if(data == 4) {return "四年级";}
-                        else if(data == 5) {return "五年级";}
-                        else if(data == 6) {return "六年级";}
-                        else {
-                            return "未知";
-                        }
-                    }},
+					"render": function (data, type, row) {
+						if(data == 1) {return "一年级";
+						}else if(data == 2) {return "二年级";}
+						else if(data == 3) {return "三年级";}
+						else if(data == 4) {return "四年级";}
+						else if(data == 5) {return "五年级";}
+						else if(data == 6) {return "六年级";}
+						else {
+							return "未知";
+						}
+					}},
 				{"data" : "term", "defaultContent" : "",
-                    "render": function (data, type, row) {
-                        if(data == 1) {return "第一学期";
-                        }else if(data == 2) {return "第二学期";}
-                        else {
-                            return "未知";
-                        }
-                    }},
-                {"data" : "examDate", "defaultContent" : ""},
-				{"data" : "createTime", "defaultContent" : ""},
+					"render": function (data, type, row) {
+						if(data == 1) {return "第一学期";
+						}else if(data == 2) {return "第二学期";}
+						else {
+							return "未知";
+						}
+					}},
+				{"data" : "stuId", "defaultContent" : ""},
+				{"data" : "stuName", "defaultContent" : ""},
+				{"data" : "yuwen", "defaultContent" : ""},
+				{"data" : "yuwenJc", "defaultContent" : ""},
+				{"data" : "yuwenyd", "defaultContent" : ""},
+				{"data" : "yuwenZw", "defaultContent" : ""},
+				{"data" : "shuxue", "defaultContent" : ""},
+				{"data" : "shuxueXz", "defaultContent" : ""},
+				{"data" : "shuxueJs", "defaultContent" : ""},
+				{"data" : "english", "defaultContent" : ""},
+				{"data" : "sipin", "defaultContent" : ""},
+				{"data" : "zf", "defaultContent" : ""},
 				{"data" : "context", "defaultContent" : ""},
-				// {"data" : "updateTime", "defaultContent" : ""},
+				{"data" : "createTime", "defaultContent" : ""},
+				{"data" : "updateTime", "defaultContent" : ""},
 				{ 
 								"data": "", 
 								"defaultContent": "",
+								"width":"100",
 								"orderable":false,
 						        "render": function (data, type, row) {
                 		           var id = row['id'];
-                		           var href = "updateRmasExam.html?id=" + id;
+                		           var href = "updateRmasSutExam.html?id=" + id;
                                    var edit = buttonEdit(href, "", pers);
-                                   var add = buttonStuInfoAdd(id, "", pers);
                 		           var del = buttonDel(id, "", pers);
-                                   return edit + add + del;
+                                   return edit + del;
                   	            }		
 							},
                 
@@ -149,7 +172,7 @@ function del(id){
     }, function() {
     	$.ajax({
             type : 'delete',
-            url : '/rmasExams/'+id,
+            url : '/rmasSutExams/'+id,
             success : function(data) {
                 example.ajax.reload();
                 layer.msg("删除成功");
@@ -165,5 +188,4 @@ $("#searchBt").click(function(){
 });
 
 init();
-
 </script>

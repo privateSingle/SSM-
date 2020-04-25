@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-2 control-label">年级</label>
+				<div class="col-md-10" style="width: 100px">
+					<select style="width: 300px"  class="form-control input-sm" name='grade' id='grade'>
+						<option value="1" selected>一年级</option>
+						<option value="2">二年级</option>
+						<option value="3">三年级</option>
+						<option value="4">四年级</option>
+						<option value="5">五年级</option>
+						<option value="6">六年级</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">学期</label>
+				<div class="col-md-10" style="width: 100px">
+					<select style="width: 300px"  class="form-control input-sm" name='term' id='term'>
+						<option value="1" >第一学期</option>
+						<option value="2">第二学期</option>
+					</select>
+				</div>
+			</div>
+			<div class='form-group' hidden>
+				<label class='col-md-2 control-label'>考试编号</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='examId' type='text' name='examId' id='examId' data-bv-notempty='true' data-bv-notempty-message='examId 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>考试名称</label>
+				<div class='col-md-10'>
+					<input   class='form-control' placeholder='examName' type='text' name='examName' id='examName' data-bv-notempty='true' data-bv-notempty-message='examName 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>考试时间</label>
+				<div class='col-md-10'>
+					<input  class='form-control' placeholder='examDate' type='text' name='examDate' id='examDate' data-bv-notempty='true' data-bv-notempty-message='examDate 不能为空'>
+				</div>
+			</div>
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>grade</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='grade' type='text' name='grade' id='grade' data-bv-notempty='true' data-bv-notempty-message='grade 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>term</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='term' type='text' name='term' id='term' data-bv-notempty='true' data-bv-notempty-message='term 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>学生编号</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='stuId' type='text' name='stuId' id='stuId' data-bv-notempty='true' data-bv-notempty-message='stuId 不能为空' onblur="selectUserName()">
+				</div>
+			</div>
+			<div class='form-group'>
+				<label  class='col-md-2 control-label'>学生姓名</label>
+				<div class='col-md-10'>
+					<input  class='form-control' placeholder='stuName' type='text' name='stuName' id='stuName' data-bv-notempty='true' data-bv-notempty-message='stuName 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>语文成绩</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='yuwen' type='text' name='yuwen' id='yuwen' data-bv-notempty='true' data-bv-notempty-message='yuwen 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>语文-基础题</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='yuwenJc' type='text' name='yuwenJc' id='yuwenJc' data-bv-notempty='true' data-bv-notempty-message='yuwenJc 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>语文-阅读题</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='yuwenyd' type='text' name='yuwenyd' id='yuwenyd' data-bv-notempty='true' data-bv-notempty-message='yuwenyd 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>语文-作文题</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='yuwenZw' type='text' name='yuwenZw' id='yuwenZw' data-bv-notempty='true' data-bv-notempty-message='yuwenZw 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>数学成绩</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='shuxue' type='text' name='shuxue' id='shuxue' data-bv-notempty='true' data-bv-notempty-message='shuxue 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>数学-选择题</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='shuxueXz' type='text' name='shuxueXz' id='shuxueXz' data-bv-notempty='true' data-bv-notempty-message='shuxueXz 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>数学-计算题</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='shuxueJs' type='text' name='shuxueJs' id='shuxueJs' data-bv-notempty='true' data-bv-notempty-message='shuxueJs 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>英语成绩</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='english' type='text' name='english' id='english' data-bv-notempty='true' data-bv-notempty-message='english 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>思想品德成绩</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='sipin' type='text' name='sipin' id='sipin' data-bv-notempty='true' data-bv-notempty-message='sipin 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>总分</label>
+				<div class='col-md-10'>
+					<input style="width: 300px"  class='form-control' placeholder='count' type='text' name='zf' id='zf' data-bv-notempty='true' data-bv-notempty-message='zf 不能为空'>
+					<button class="btn btn-primary" type="submit" onclick="jscount()">
+						<i class="fa fa-save"></i> 计算总成绩
+					</button>
+				</div>
+
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>评语</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='context' type='text' name='context' id='context' data-bv-notempty='true' data-bv-notempty-message='context 不能为空'>
+				</div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='/pages/examinfo/rmasExamList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+			var layer = layui.layer;
+			var laydate = layui.laydate;
+			laydate.render({
+				elem: '#examDate'
+			});
+		});
+		initData();
+
+		function initData(){
+			var examId = getUrlParam("pid");
+			if(examId != ""){
+				$.ajax({
+					type : 'get',
+					url : '/rmasExams/'+examId,
+					async : false,
+					success : function(data) {
+						$('#examId').val(data.id);
+						$('#examName').val(data.examName);
+						$('#examDate').val(data.examDate);
+						//$('#context').val(data.context);
+						$('#grade').val(data.grade);
+						$('#term').val(data.term);
+						$('#createTime').val(data.createTime);
+						$('#updateTime').val(data.updateTime);
+
+					}
+				});
+			}else {
+				$('#examId').val("");
+				$('#examName').val("");
+				$('#examDate').val("");
+				//$('#context').val(data.context);
+				$('#grade').val("");
+				$('#term').val("");
+				$('#createTime').val();
+				$('#updateTime').val();
+			}
+		}
+		function jscount(){
+			var yuwen = $('#yuwen').val() == "" ? 0:$('#yuwen').val();
+			var shuxue = $('#shuxue').val() == "" ? 0:$('#shuxue').val();
+			var english = $('#english').val() == "" ? 0:$('#english').val();
+			var sipin = $('#sipin').val() == "" ? 0:$('#sipin').val();
+			var count = parseFloat(yuwen)+parseFloat(shuxue)+parseFloat(english)+parseFloat(sipin)
+			$('#zf').val(count);
+
+		}
+		function add() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'post',
+				url : '/rmasSutExams',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("添加成功", {shift: -1, time: 1000}, function(){
+                        // location.href = "rmasSutExamList.html";
+						$("#form")[0].reset();
+						layui.form.render();
+                    });
+				}
+			});
+		}
+
+		function selectUserName() {
+
+			var id = $('#stuId').val();
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/users/userName/'+id,
+					async : false,
+					success : function(data) {
+						if(data != null&& data != "") {
+							$("#stuName").val(data.username);
+						}else {
+							alert("未查询到该学生编号["+id+"]对应的学生信息！");
+							$("#stuName").val("该生未通过校验");
+						}
+						// $("#id").val(data.id);
+						// $("#username").val(data.username);
+						// $("#nickname").val(data.nickname);
+						// $("#phone").val(data.phone);
+						// $("#telephone").val(data.telephone);
+						// $("#email").val(data.email);
+						// $("#birthday").val(data.birthday);
+						// $("#sex").val(data.sex);
+						// $("#status").val(data.status);
+						// $("#site").val(data.site);
+					}
+				});
+
+			}
+		}
+
+	</script>
+</body>
+</html>

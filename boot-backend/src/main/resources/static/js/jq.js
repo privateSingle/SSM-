@@ -29,6 +29,17 @@ function buttonDel(data, permission, pers){
 	return btn.prop("outerHTML");
 }
 
+function buttonStuInfoAdd(data, permission, pers){
+	// if(permission != ""){
+	// 	if ($.inArray(permission, pers) < 0) {
+	// 		return "";
+	// 	}
+	// }
+
+	var btn = $("<button class='layui-btn layui-btn-xs' title='成绩录入' onclick='addStuInfo(\"" + data +"\")'><i class='layui-icon'>成绩录入</i></button>");
+	return btn.prop("outerHTML");
+}
+
 function buttonEdit(href, permission, pers){
 	if(permission != ""){
 		if ($.inArray(permission, pers) < 0) {
@@ -44,4 +55,8 @@ function buttonEdit(href, permission, pers){
 function deleteCurrentTab(){
 	var lay_id = $(parent.document).find("ul.layui-tab-title").children("li.layui-this").attr("lay-id");
 	parent.active.tabDelete(lay_id);
+}
+
+function addStuInfo(id){
+	alert(id);
 }

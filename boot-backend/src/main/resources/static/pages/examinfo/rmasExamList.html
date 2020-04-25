@@ -43,9 +43,9 @@
                                 <tr>
 									<th>编号</th>
 									<th>名称</th>
-									<th>考试时间</th>
 									<th>年级</th>
 									<th>学期</th>
+                                    <th>考试时间</th>
 									<th>发布时间</th>
 									<th>备注</th>
 <!--								<th>updateTime</th>-->
@@ -96,7 +96,6 @@ function init(){
             "columns": [
 				{"data" : "id", "defaultContent" : ""},
 				{"data" : "examName", "defaultContent" : ""},
-				{"data" : "examDate", "defaultContent" : ""},
 				{"data" : "grade", "defaultContent" : "",
                     "render": function (data, type, row) {
                         if(data == 1) {return "一年级";
@@ -117,6 +116,7 @@ function init(){
                             return "未知";
                         }
                     }},
+                {"data" : "examDate", "defaultContent" : ""},
 				{"data" : "createTime", "defaultContent" : ""},
 				{"data" : "context", "defaultContent" : ""},
 				// {"data" : "updateTime", "defaultContent" : ""},
@@ -128,8 +128,9 @@ function init(){
                 		           var id = row['id'];
                 		           var href = "updateRmasExam.html?id=" + id;
                                    var edit = buttonEdit(href, "", pers);
+                                   var add = buttonStuInfoAdd(id, "", pers);
                 		           var del = buttonDel(id, "", pers);
-                                   return edit + del;
+                                   return edit + add + del;
                   	            }		
 							},
                 

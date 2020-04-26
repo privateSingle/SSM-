@@ -101,7 +101,8 @@ public class RmasSutExamController {
                 if(sutdIdList.size() != 0 ) {
                     map.put("stuIdList",sutdIdList);
                 }else {
-                    map.put("stuIdList",null);
+                    sutdIdList.add("");
+                    map.put("stuIdList",sutdIdList);
                 }
 
                 return rmasSutExamDao.count(request.getParams());
@@ -122,7 +123,8 @@ public class RmasSutExamController {
                     if(sutdIdLIst2.size() !=0) {
                         map.put("stuIdList",sutdIdLIst2);
                     }else {
-                        map.put("stuIdList",null);
+                        sutdIdLIst2.add("");
+                        map.put("stuIdList",sutdIdLIst2);
                     }
 
                 }

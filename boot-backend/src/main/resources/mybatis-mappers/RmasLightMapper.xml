@@ -45,6 +45,10 @@
 		limit #{offset}, #{limit}
 	</select>
 
+	<select id="listAll" resultType="RmasLight">
+		select * from rmas_light t
+	</select>
+
 	<update id="update">
 		update rmas_light t
 		<set>

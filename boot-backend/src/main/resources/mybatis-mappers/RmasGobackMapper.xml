@@ -45,6 +45,10 @@
 		limit #{offset}, #{limit}
 	</select>
 
+	<select id="listAll" resultType="RmasGoback">
+		select * from rmas_goback t
+	</select>
+
 	<update id="update">
 		update rmas_goback t
 		<set>

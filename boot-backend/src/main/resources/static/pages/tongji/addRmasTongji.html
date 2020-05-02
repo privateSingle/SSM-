@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>type</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='type' type='text' name='type' id='type' data-bv-notempty='true' data-bv-notempty-message='type 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>January</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='January' type='text' name='January' id='January' data-bv-notempty='true' data-bv-notempty-message='January 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>February</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='February' type='text' name='February' id='February' data-bv-notempty='true' data-bv-notempty-message='February 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>March</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='March' type='text' name='March' id='March' data-bv-notempty='true' data-bv-notempty-message='March 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>April</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='April' type='text' name='April' id='April' data-bv-notempty='true' data-bv-notempty-message='April 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>May</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='May' type='text' name='May' id='May' data-bv-notempty='true' data-bv-notempty-message='May 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>June</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='June' type='text' name='June' id='June' data-bv-notempty='true' data-bv-notempty-message='June 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>July</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='July' type='text' name='July' id='July' data-bv-notempty='true' data-bv-notempty-message='July 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>August</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='August' type='text' name='August' id='August' data-bv-notempty='true' data-bv-notempty-message='August 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>September</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='September' type='text' name='September' id='September' data-bv-notempty='true' data-bv-notempty-message='September 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>October</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='October' type='text' name='October' id='October' data-bv-notempty='true' data-bv-notempty-message='October 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>November</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='November' type='text' name='November' id='November' data-bv-notempty='true' data-bv-notempty-message='November 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>December</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='December' type='text' name='December' id='December' data-bv-notempty='true' data-bv-notempty-message='December 不能为空'>
+				</div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='rmasTongjiList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		function add() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'post',
+				url : '/rmasTongjis',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("添加成功", {shift: -1, time: 1000}, function(){
+                        location.href = "rmasTongjiList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

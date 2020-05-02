@@ -18,17 +18,17 @@
 	                   			<td>
 		                   			<form class="form-inline" onsubmit="return false">
 										<div class="form-group">
-											id：
-											<input id="id" type="text" class="form-control" placeholder="类型">
+											类型：
+											<input id="id" type="text" class="form-control" placeholder="id">
 											<button id="searchBt" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe615;</i>搜索</button>
 										</div>
 									</form>
 	                   			</td>
-	                   			<td align="right">
-	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addRmasSturoom.html'">
-                                      <i class="layui-icon">&#xe608;</i> 添加
-                                    </button>
-	                   			</td>
+<!--	                   			<td align="right">-->
+<!--	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addRmasTongji.html'">-->
+<!--                                      <i class="layui-icon">&#xe608;</i> 添加-->
+<!--                                    </button>-->
+<!--	                   			</td>-->
 	                   		</tr> 
 	                    </table>
 					</div>
@@ -41,15 +41,23 @@
                                 <tr>
                                 </tr>                       
                                 <tr>
-									<th>id</th>
-									<th>title</th>
-									<th>floor</th>
-									<th>people</th>
-									<th>status</th>
-									<th>content</th>
-									<th>createTime</th>
-									<th>updateTime</th>
-									<th>操作</th>
+<!--									<th>id</th>-->
+									<th>类型/月份</th>
+									<th>一月</th>
+									<th>二月</th>
+									<th>三月</th>
+									<th>四月</th>
+									<th>五月</th>
+									<th>六月</th>
+									<th>七月</th>
+									<th>八月</th>
+									<th>九月</th>
+									<th>十月</th>
+									<th>十一月</th>
+									<th>十二月</th>
+<!--									<th>创建时间</th>-->
+<!--									<th>修改时间</th>-->
+<!--									<th>操作</th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,34 +91,42 @@ function init(){
                 "url": "/js/plugin/datatables/Chinese.lang"
             },
         	"ajax": {
-        		"url" : "/rmasSturooms",
+        		"url" : "/rmasTongjis",
         		"type":"get",
         		"data":function(d){
-    				d.id = $("#id").val();
+    				d.type = $("#id").val();
     			}
         	},
         	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
             "columns": [
-				{"data" : "id", "defaultContent" : ""},
-				{"data" : "title", "defaultContent" : ""},
-				{"data" : "floor", "defaultContent" : ""},
-				{"data" : "people", "defaultContent" : ""},
-				{"data" : "status", "defaultContent" : ""},
-				{"data" : "content", "defaultContent" : ""},
-				{"data" : "createTime", "defaultContent" : ""},
-				{"data" : "updateTime", "defaultContent" : ""},
-				{ 
-								"data": "", 
-								"defaultContent": "",
-								"orderable":false,
-						        "render": function (data, type, row) {
-                		           var id = row['id'];
-                		           var href = "updateRmasSturoom.html?id=" + id;
-                                   var edit = buttonEdit(href, "", pers);
-                		           var del = buttonDel(id, "", pers);
-                                   return edit + del;
-                  	            }		
-							},
+				// {"data" : "id", "defaultContent" : ""},
+				{"data" : "type", "defaultContent" : "","width":100},
+				{"data" : "january", "defaultContent" : "","width":100},
+				{"data" : "february", "defaultContent" : "","width":100},
+				{"data" : "march", "defaultContent" : "","width":100},
+				{"data" : "april", "defaultContent" : "","width":100},
+				{"data" : "may", "defaultContent" : "","width":100},
+				{"data" : "june", "defaultContent" : "","width":100},
+				{"data" : "july", "defaultContent" : "","width":100},
+				{"data" : "august", "defaultContent" : "","width":100},
+				{"data" : "september", "defaultContent" : "","width":100},
+				{"data" : "october", "defaultContent" : "","width":100},
+				{"data" : "november", "defaultContent" : "","width":110},
+				{"data" : "december", "defaultContent" : "","width":110},
+				// {"data" : "createTime", "defaultContent" : ""},
+				// {"data" : "updateTime", "defaultContent" : ""},
+				// {
+				// 				"data": "",
+				// 				"defaultContent": "",
+				// 				"orderable":false,
+				// 		        "render": function (data, type, row) {
+                // 		           var id = row['id'];
+                // 		           var href = "updateRmasTongji.html?id=" + id;
+                //                    var edit = buttonEdit(href, "", pers);
+                // 		           var del = buttonDel(id, "", pers);
+                //                    return edit + del;
+                //   	            }
+				// 			},
                 
             ],
            "order": [[ 0, "asc" ]]
@@ -127,7 +143,7 @@ function del(id){
     }, function() {
     	$.ajax({
             type : 'delete',
-            url : '/rmasSturooms/'+id,
+            url : '/rmasTongjis/'+id,
             success : function(data) {
                 example.ajax.reload();
                 layer.msg("删除成功");

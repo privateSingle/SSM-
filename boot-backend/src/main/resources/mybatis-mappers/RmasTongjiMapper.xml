@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zw.admin.server.dao.RmasTongjiDao">
+
+	<sql id="where">
+		<where>
+			<if test="params.id != null and params.id != ''">
+				and id = #{params.id} 
+			</if>
+			<if test="params.type != null and params.type != ''">
+				and type = #{params.type} 
+			</if>
+			<if test="params.january != null and params.january != ''">
+				and January = #{params.January} 
+			</if>
+			<if test="params.february != null and params.february != ''">
+				and February = #{params.February} 
+			</if>
+			<if test="params.march != null and params.march != ''">
+				and March = #{params.March} 
+			</if>
+			<if test="params.april != null and params.april != ''">
+				and April = #{params.April} 
+			</if>
+			<if test="params.may != null and params.may != ''">
+				and May = #{params.May} 
+			</if>
+			<if test="params.june != null and params.june != ''">
+				and June = #{params.June} 
+			</if>
+			<if test="params.july != null and params.july != ''">
+				and July = #{params.July} 
+			</if>
+			<if test="params.august != null and params.august != ''">
+				and August = #{params.August} 
+			</if>
+			<if test="params.september != null and params.september != ''">
+				and September = #{params.September} 
+			</if>
+			<if test="params.october != null and params.october != ''">
+				and October = #{params.October} 
+			</if>
+			<if test="params.november != null and params.november != ''">
+				and November = #{params.November} 
+			</if>
+			<if test="params.december != null and params.december != ''">
+				and December = #{params.December} 
+			</if>
+			<if test="params.createTime != null and params.createTime != ''">
+				and createTime = #{params.createTime} 
+			</if>
+			<if test="params.updateTime != null and params.updateTime != ''">
+				and updateTime = #{params.updateTime} 
+			</if>
+		
+		</where>
+	</sql>
+
+	<select id="count" resultType="int">
+		select count(1) from rmas_tongji t
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultType="RmasTongji">
+		select * from rmas_tongji t
+		<include refid="where" />
+		${params.orderBy}
+		limit #{offset}, #{limit}
+	</select>
+
+	<update id="update">
+		update rmas_tongji t
+		<set>
+			<if test="type != null">
+				type = #{type}, 
+			</if>
+			<if test="January != null">
+				January = #{January}, 
+			</if>
+			<if test="February != null">
+				February = #{February}, 
+			</if>
+			<if test="March != null">
+				March = #{March}, 
+			</if>
+			<if test="April != null">
+				April = #{April}, 
+			</if>
+			<if test="May != null">
+				May = #{May}, 
+			</if>
+			<if test="June != null">
+				June = #{June}, 
+			</if>
+			<if test="July != null">
+				July = #{July}, 
+			</if>
+			<if test="August != null">
+				August = #{August}, 
+			</if>
+			<if test="September != null">
+				September = #{September}, 
+			</if>
+			<if test="October != null">
+				October = #{October}, 
+			</if>
+			<if test="November != null">
+				November = #{November}, 
+			</if>
+			<if test="December != null">
+				December = #{December}, 
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime}, 
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime}, 
+			</if>
+
+		</set>
+
+		where t.id = #{id}
+	</update>
+
+</mapper>

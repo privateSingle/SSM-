@@ -29,5 +29,7 @@ public interface RmasLightDao {
     
     int count(@Param("params") Map<String, Object> params);
 
+    List<RmasLight> listAll();
+
     List<RmasLight> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
 }

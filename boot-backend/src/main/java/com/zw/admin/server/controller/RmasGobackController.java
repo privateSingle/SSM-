@@ -1,7 +1,10 @@
 package com.zw.admin.server.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import com.zw.admin.server.model.User;
+import com.zw.admin.server.utils.UserUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +37,8 @@ public class RmasGobackController {
     @ApiOperation(value = "保存")
     @RequiresPermissions("goback:add")
     public RmasGoback save(@RequestBody RmasGoback rmasGoback) {
+        rmasGoback.setStatus(1);//状态1 已完成
+        rmasGoback.setIsCheck(0);//是否撤销 否
         rmasGobackDao.save(rmasGoback);
 
         return rmasGoback;
@@ -45,10 +50,42 @@ public class RmasGobackController {
         return rmasGobackDao.getById(id);
     }
 
+    @GetMapping("/queren/{id}")
+    @ApiOperation(value = "确认信息")
+    public void queren(@PathVariable Long id) {
+        RmasGoback goback =  rmasGobackDao.getById(id);
+        if(goback != null) {
+            goback.setStatus(2);//已处理
+            goback.setIsCheck(1);//已撤销
+            rmasGobackDao.update(goback);
+        }
+    }
+
+    @GetMapping("/quxiao/{id}")
+    @ApiOperation(value = "确认信息")
+    public void quxiao(@PathVariable Long id) {
+        RmasGoback goback =  rmasGobackDao.getById(id);
+        if(goback != null) {
+            goback.setStatus(2);//已处理
+            rmasGobackDao.update(goback);
+        }
+    }
+
     @PutMapping
     @ApiOperation(value = "修改")
     @RequiresPermissions("goback:update")
     public RmasGoback update(@RequestBody RmasGoback rmasGoback) {
+        rmasGobackDao.update(rmasGoback);
+
+        return rmasGoback;
+    }
+
+    @PutMapping
+    @ApiOperation(value = "修改")
+    @RequestMapping("/stu")
+    @RequiresPermissions("goback:updateToStu")
+    public RmasGoback updateToStu(@RequestBody RmasGoback rmasGoback) {
+        rmasGoback.setStatus(0);//待处理
         rmasGobackDao.update(rmasGoback);
 
         return rmasGoback;
@@ -71,6 +108,43 @@ public class RmasGobackController {
             }
         }).handle(request);
     }
+    @GetMapping
+    @RequestMapping("/listToStu")
+    @ApiOperation(value = "列表")
+    public PageTableResponse listToStu(PageTableRequest request) {
+
+        return new PageTableHandler(new CountHandler() {
+
+            @Override
+            public int count(PageTableRequest request) {
+                User user = UserUtil.getCurrentUser();
+                String finalLoginId = "";
+                if(user != null) {
+                    finalLoginId = user.getUsername();
+                }
+                Map<String,Object> map =  request.getParams();
+                map.put("student", finalLoginId);
+                map.put("isCheck", "0");
+                return rmasGobackDao.count(request.getParams());
+            }
+        }, new ListHandler() {
+
+            @Override
+            public List<RmasGoback> list(PageTableRequest request) {
+                User user = UserUtil.getCurrentUser();
+                String finalLoginId = "";
+                if(user != null) {
+                    finalLoginId = user.getUsername();
+                }
+                Map<String,Object> map =  request.getParams();
+                map.put("student", finalLoginId);
+                map.put("isCheck", "0");
+                return rmasGobackDao.list(request.getParams(), request.getOffset(), request.getLimit());
+            }
+        }).handle(request);
+    }
+
+
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除")

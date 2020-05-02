@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+<!--			<div hidden>-->
+<!--			<div  class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>名称</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='title' type='text' name='title' id='title' data-bv-notempty='true' data-bv-notempty-message='title 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>时间</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='date' type='text' name='date' id='date' data-bv-notempty='true' data-bv-notempty-message='date 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>类型</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='type' type='text' name='type' id='type' data-bv-notempty='true' data-bv-notempty-message='type 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>学生</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='student' type='text' name='student' id='student' data-bv-notempty='true' data-bv-notempty-message='student 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--&lt;!&ndash;			<div class='form-group'>&ndash;&gt;-->
+<!--&lt;!&ndash;				<label class='col-md-2 control-label'>状态</label>&ndash;&gt;-->
+<!--&lt;!&ndash;				<div class='col-md-10'>&ndash;&gt;-->
+<!--&lt;!&ndash;					<select class="form-control input-sm" name="status" id="status" data-bv-notempty='status' data-bv-notempty-message='状态不能为空'>&ndash;&gt;-->
+<!--&lt;!&ndash;						<option value="1">已完成</option>&ndash;&gt;-->
+<!--&lt;!&ndash;						<option value="0">女</option>&ndash;&gt;-->
+<!--&lt;!&ndash;					</select>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;					<input class='form-control' placeholder='status' type='text' name='status' id='status' data-bv-notempty='true' data-bv-notempty-message='status 不能为空'>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;				</div>&ndash;&gt;-->
+<!--&lt;!&ndash;			</div>&ndash;&gt;-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>备注</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='content' type='text' name='content' id='content' data-bv-notempty='true' data-bv-notempty-message='content 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+
+<!--			</div>-->
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>晚归说明</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='gobackCont' type='text' name='gobackCont' id='gobackCont' data-bv-notempty='true' data-bv-notempty-message='晚归说明不能为空'>
+				</div>
+			</div>
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='rmasGobackListToStu.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 提交
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+			var layer = layui.layer;
+			var laydate = layui.laydate;
+			laydate.render({
+				elem: '#date'
+			});
+		});
+		
+		initData();
+		
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/rmasGobacks/'+id,
+					async : false,
+					success : function(data) {
+						$('#id').val(data.id);
+						$('#gobackCont').val(data.gobackCont);
+						$('#title').val(data.title);
+						$('#date').val(data.date);
+						$('#type').val(data.type);
+						$('#student').val(data.student);
+						$('#content').val(data.content);
+						$('#createTime').val(data.createTime);
+						$('#updateTime').val(data.updateTime);
+
+
+					}
+				});
+			}
+		}
+
+		function update() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'put',
+				url : '/rmasGobacks/stu',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "rmasGobackListToStu.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

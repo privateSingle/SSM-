@@ -24,7 +24,7 @@ public interface RmasGobackDao {
     int update(RmasGoback rmasGoback);
     
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into rmas_goback(title, date, type, student, content, createTime, updateTime) values(#{title}, #{date}, #{type}, #{student}, #{content}, #{createTime}, #{updateTime})")
+    @Insert("insert into rmas_goback(title, date, type, student, content, createTime, updateTime, status, isCheck) values(#{title}, #{date}, #{type}, #{student}, #{content}, #{createTime}, #{updateTime},#{status},#{isCheck})")
     int save(RmasGoback rmasGoback);
     
     int count(@Param("params") Map<String, Object> params);

@@ -24,11 +24,11 @@
 										</div>
 									</form>
 	                   			</td>
-	                   			<td align="right">
-	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addRmasGoback.html'">
-                                      <i class="layui-icon">&#xe608;</i> 添加
-                                    </button>
-	                   			</td>
+<!--	                   			<td align="right">-->
+<!--	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addRmasGoback.html'">-->
+<!--                                      <i class="layui-icon">&#xe608;</i> 添加-->
+<!--                                    </button>-->
+<!--	                   			</td>-->
 	                   		</tr> 
 	                    </table>
 					</div>
@@ -49,7 +49,6 @@
 									<th>晚归说明</th>
 									<th>备注</th>
 									<th>状态</th>
-									<th>是否撤回</th>
 									<th>创建时间</th>
 <!--									<th>修改时间</th>-->
 									<th>操作</th>
@@ -86,7 +85,7 @@ function init(){
                 "url": "/js/plugin/datatables/Chinese.lang"
             },
         	"ajax": {
-        		"url" : "/rmasGobacks",
+        		"url" : "/rmasGobacks/listToStu",
         		"type":"get",
         		"data":function(d){
     				d.id = $("#id").val();
@@ -112,17 +111,7 @@ function init(){
 							sta = "已处理";
 						}
 						return sta;
-					}},
-				{"data" : "isCheck", "defaultContent" : "",
-					"render": function (data, type, row) {
-						var bak = row['isCheck'];
-						if(bak == 0){
-							bak = "未撤销";
-						}else if(bak == 1) {
-							bak = "已撤销";
-						}
-						return bak;
-					}},
+					}	},
 				{"data" : "createTime", "defaultContent" : ""},
 				// {"data" : "updateTime", "defaultContent" : ""},
 				{ 
@@ -131,17 +120,10 @@ function init(){
 								"orderable":false,
 						        "render": function (data, type, row) {
                 		           var id = row['id'];
-									var sta = row['status'];//1已完成 0 待处理
-                		           var href = "updateRmasGoback.html?id=" + id;
+                		           var href = "updateRmasGobackToStu.html?id=" + id;
                                    var edit = buttonEdit(href, "", pers);
-                		           var del = buttonDel(id, "", pers);
-                		           if(sta == 0) {
-                		           	 var handbtn = buttonHand(id,"",pers);
-									   return edit + del + handbtn;
-								   }else {
-									   return edit + del;
-								   }
-                                   // return edit + del;
+                		           // var del = buttonDel(id, "", pers);
+                                   return edit;
                   	            }		
 							},
                 
@@ -176,50 +158,4 @@ $("#searchBt").click(function(){
 });
 
 init();
-
-
-function buttonHand(data, permission, pers){
-	var btn = $("<button class='layui-btn layui-btn-xs' title='确认' onclick='queren(\"" + data +"\")'><i class='layui-icon'>信息确认</i></button>");
-	return btn.prop("outerHTML");
-}
-
-function queren(id) {
-	layer.open({
-		content: '确认晚归说明?'
-		,btn: ['确认并撤销', '确认不撤销']
-		,yes: function(index, layero){
-			//确定的回调
-			$.ajax({
-				type : 'get',
-				url : '/rmasGobacks/queren/'+id,
-				async : false,
-				success : function(data) {
-
-				}
-			});
-			layer.close(index);
-
-		}
-		,btn2: function(index, layero){
-			//取消的回调
-			$.ajax({
-				type : 'get',
-				url : '/rmasGobacks/quxiao/'+id,
-				async : false,
-				success : function(data) {
-
-				}
-			});
-			layer.close(index);
-			// return 2;
-			//return false 开启该代码可禁止点击该按钮关闭
-		}
-
-		,cancel: function(){
-			//右上角关闭回调
-//                return false //开启该代码可禁止点击该按钮关闭
-		}
-	});
-
-}
 </script>

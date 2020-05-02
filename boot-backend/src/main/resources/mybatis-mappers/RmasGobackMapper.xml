@@ -20,6 +20,9 @@
 			<if test="params.student != null and params.student != ''">
 				and student = #{params.student} 
 			</if>
+			<if test="params.isCheck != null and params.isCheck != ''">
+				and isCheck = #{params.isCheck}
+			</if>
 			<if test="params.content != null and params.content != ''">
 				and content = #{params.content} 
 			</if>
@@ -73,7 +76,15 @@
 			<if test="updateTime != null">
 				updateTime = #{updateTime}, 
 			</if>
-
+			<if test="gobackCont != null">
+				gobackCont = #{gobackCont},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="isCheck != null">
+				isCheck = #{isCheck},
+			</if>
 		</set>
 
 		where t.id = #{id}

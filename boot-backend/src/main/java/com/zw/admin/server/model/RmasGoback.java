@@ -12,6 +12,9 @@ public class RmasGoback extends BaseEntity<Long> {
 	private String type;
 	private String student;
 	private String content;
+	private String gobackCont;
+	private Integer status;
+	private Integer isCheck;
 
 	public String getTitle() {
 		return title;
@@ -44,4 +47,27 @@ public class RmasGoback extends BaseEntity<Long> {
 		this.content = content;
 	}
 
+	public String getGobackCont() {
+		return gobackCont;
+	}
+
+	public void setGobackCont(String gobackCont) {
+		this.gobackCont = gobackCont;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Integer getIsCheck() {
+		return isCheck;
+	}
+
+	public void setIsCheck(Integer isCheck) {
+		this.isCheck = isCheck;
+	}
 }

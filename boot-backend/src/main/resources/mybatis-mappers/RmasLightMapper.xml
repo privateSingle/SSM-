@@ -20,6 +20,12 @@
 			<if test="params.room != null and params.room != ''">
 				and room = #{params.room} 
 			</if>
+			<if test="params.isCheck != null and params.isCheck != ''">
+				and isCheck = #{params.isCheck}
+			</if>
+			<if test="params.student != null and params.student != ''">
+				and student = #{params.student}
+			</if>
 			<if test="params.content != null and params.content != ''">
 				and content = #{params.content} 
 			</if>
@@ -63,6 +69,18 @@
 			</if>
 			<if test="room != null">
 				room = #{room}, 
+			</if>
+			<if test="lightCont != null">
+				lightCont = #{lightCont},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="isCheck != null">
+				isCheck = #{isCheck},
+			</if>
+			<if test="student != null">
+				student = #{student},
 			</if>
 			<if test="content != null">
 				content = #{content}, 

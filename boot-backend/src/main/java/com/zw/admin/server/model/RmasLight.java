@@ -12,6 +12,10 @@ public class RmasLight extends BaseEntity<Long> {
 	private String type;
 	private String room;
 	private String content;
+	private String lightCont;
+	private Integer status;
+	private Integer isCheck;
+	private String student;
 
 	public String getTitle() {
 		return title;
@@ -44,4 +48,35 @@ public class RmasLight extends BaseEntity<Long> {
 		this.content = content;
 	}
 
+	public String getStudent() {
+		return student;
+	}
+
+	public void setStudent(String student) {
+		this.student = student;
+	}
+
+	public String getLightCont() {
+		return lightCont;
+	}
+
+	public void setLightCont(String lightCont) {
+		this.lightCont = lightCont;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Integer getIsCheck() {
+		return isCheck;
+	}
+
+	public void setIsCheck(Integer isCheck) {
+		this.isCheck = isCheck;
+	}
 }

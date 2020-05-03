@@ -9,49 +9,49 @@
 	<form class="form-horizontal" onsubmit="return false" id="form">
 		<fieldset>
 			<input type="hidden" id="id" name="id">
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>名称</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='title' type='text' name='title' id='title' data-bv-notempty='true' data-bv-notempty-message='title 不能为空'>
-				</div>
-			</div>
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>时间</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='date' type='text' name='date' id='date' data-bv-notempty='true' data-bv-notempty-message='date 不能为空'>
-				</div>
-			</div>
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>类型</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='type' type='text' name='type' id='type' data-bv-notempty='true' data-bv-notempty-message='type 不能为空'>
-				</div>
-			</div>
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>宿舍</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='room' type='text' name='room' id='room' data-bv-notempty='true' data-bv-notempty-message='room 不能为空'>
-				</div>
-			</div>
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>宿舍长</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='只限学生编号' type='text' name='student' id='student' data-bv-notempty='true' data-bv-notempty-message='student 不能为空'>
-				</div>
-			</div>
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>备注</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='content' type='text' name='content' id='content' data-bv-notempty='true' data-bv-notempty-message='content 不能为空'>
-				</div>
-			</div>
+<!--			<div hidden>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>名称</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='title' type='text' name='title' id='title' data-bv-notempty='true' data-bv-notempty-message='title 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>时间</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='date' type='text' name='date' id='date' data-bv-notempty='true' data-bv-notempty-message='date 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>类型</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='type' type='text' name='type' id='type' data-bv-notempty='true' data-bv-notempty-message='type 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>宿舍</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='room' type='text' name='room' id='room' data-bv-notempty='true' data-bv-notempty-message='room 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class='form-group'>-->
+<!--				<label class='col-md-2 control-label'>备注</label>-->
+<!--				<div class='col-md-10'>-->
+<!--					<input class='form-control' placeholder='content' type='text' name='content' id='content' data-bv-notempty='true' data-bv-notempty-message='content 不能为空'>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			</div>-->
 
-
-
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>晚熄灯说明</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='lightCont' type='text' name='lightCont' id='lightCont' data-bv-notempty='true' data-bv-notempty-message='晚熄灯说明不能为空'>
+				</div>
+			</div>
 			<div class="form-actions">
 				<div class="row" align="center">
 					<div class="col-md-12">
-					    <button class="btn btn-primary" onclick="location.href='rmasLightList.html'">返回</button>
+					    <button class="btn btn-primary" onclick="location.href='rmasLightListToStu.html'">返回</button>
 						<button class="btn btn-primary" type="submit" onclick="update()">
 							<i class="fa fa-save"></i> 保存
 						</button>
@@ -91,7 +91,7 @@
 						$('#date').val(data.date);
 						$('#type').val(data.type);
 						$('#room').val(data.room);
-						$('#student').val(data.student);
+						$('#lightCont').val(data.lightCont);
 						$('#content').val(data.content);
 						$('#createTime').val(data.createTime);
 						$('#updateTime').val(data.updateTime);
@@ -113,12 +113,12 @@
 
 			$.ajax({
 				type : 'put',
-				url : '/rmasLights',
+				url : '/rmasLights/stu',
 				contentType: "application/json; charset=utf-8",  
 				data : JSON.stringify(formdata),
 				success : function(data) {
 					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
-                        location.href = "rmasLightList.html";
+                        location.href = "rmasLightListToStu.html";
                     });
 				}
 			});

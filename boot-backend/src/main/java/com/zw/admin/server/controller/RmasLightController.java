@@ -1,7 +1,11 @@
 package com.zw.admin.server.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import com.zw.admin.server.model.RmasGoback;
+import com.zw.admin.server.model.User;
+import com.zw.admin.server.utils.UserUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +38,8 @@ public class RmasLightController {
     @ApiOperation(value = "保存")
     @RequiresPermissions("light:add")
     public RmasLight save(@RequestBody RmasLight rmasLight) {
+        rmasLight.setStatus(1);//状态1 已完成
+        rmasLight.setIsCheck(0);//是否撤销 否
         rmasLightDao.save(rmasLight);
 
         return rmasLight;
@@ -54,6 +60,38 @@ public class RmasLightController {
         return rmasLight;
     }
 
+    @GetMapping("/queren/{id}")
+    @ApiOperation(value = "确认信息")
+    public void queren(@PathVariable Long id) {
+        RmasLight light =  rmasLightDao.getById(id);
+        if(light != null) {
+            light.setStatus(2);//已处理
+            light.setIsCheck(1);//已撤销
+            rmasLightDao.update(light);
+        }
+    }
+
+    @GetMapping("/quxiao/{id}")
+    @ApiOperation(value = "确认信息")
+    public void quxiao(@PathVariable Long id) {
+        RmasLight light =  rmasLightDao.getById(id);
+        if(light != null) {
+            light.setStatus(2);//已处理
+            rmasLightDao.update(light);
+        }
+    }
+
+    @PutMapping
+    @ApiOperation(value = "修改")
+    @RequestMapping("/stu")
+    @RequiresPermissions("light:updateToStu")
+    public RmasLight updateToStu(@RequestBody RmasLight rmasLight) {
+        rmasLight.setStatus(0);//待处理
+        rmasLightDao.update(rmasLight);
+
+        return rmasLight;
+    }
+
     @GetMapping
     @ApiOperation(value = "列表")
     @RequiresPermissions("light:query")
@@ -62,16 +100,55 @@ public class RmasLightController {
 
             @Override
             public int count(PageTableRequest request) {
+
                 return rmasLightDao.count(request.getParams());
             }
         }, new ListHandler() {
 
             @Override
             public List<RmasLight> list(PageTableRequest request) {
+
                 return rmasLightDao.list(request.getParams(), request.getOffset(), request.getLimit());
             }
         }).handle(request);
     }
+
+    @GetMapping
+    @ApiOperation(value = "列表")
+    @RequestMapping("/listToStu")
+    public PageTableResponse listToStu(PageTableRequest request) {
+        return new PageTableHandler(new CountHandler() {
+
+            @Override
+            public int count(PageTableRequest request) {
+                User user = UserUtil.getCurrentUser();
+                String finalLoginId = "";
+                if(user != null) {
+                    finalLoginId = user.getUsername();
+                }
+                Map<String,Object> map =  request.getParams();
+                map.put("student", finalLoginId);
+                map.put("isCheck", "0");
+                return rmasLightDao.count(request.getParams());
+            }
+        }, new ListHandler() {
+
+            @Override
+            public List<RmasLight> list(PageTableRequest request) {
+                User user = UserUtil.getCurrentUser();
+                String finalLoginId = "";
+                if(user != null) {
+                    finalLoginId = user.getUsername();
+                }
+                Map<String,Object> map =  request.getParams();
+                map.put("student", finalLoginId);
+                map.put("isCheck", "0");
+                return rmasLightDao.list(request.getParams(), request.getOffset(), request.getLimit());
+            }
+        }).handle(request);
+    }
+
+
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除")

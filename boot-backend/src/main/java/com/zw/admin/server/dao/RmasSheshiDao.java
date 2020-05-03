@@ -24,7 +24,7 @@ public interface RmasSheshiDao {
     int update(RmasSheshi rmasSheshi);
     
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into rmas_sheshi(title, bxDate, bxUser, tell, content, createTime, updateTime) values(#{title}, #{bxDate}, #{bxUser}, #{tell}, #{content}, #{createTime}, #{updateTime})")
+    @Insert("insert into rmas_sheshi(title, bxDate, bxUser, tell, content, createTime, updateTime, status) values(#{title}, #{bxDate}, #{bxUser}, #{tell}, #{content}, #{createTime}, #{updateTime}, #{status})")
     int save(RmasSheshi rmasSheshi);
     
     int count(@Param("params") Map<String, Object> params);

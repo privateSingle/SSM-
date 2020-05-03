@@ -1,7 +1,15 @@
 package com.zw.admin.server.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.zw.admin.server.annotation.LogAnnotation;
+import com.zw.admin.server.model.FileInfo;
+import com.zw.admin.server.service.DataHandlerService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +30,7 @@ import com.zw.admin.server.dao.RmasRoomDao;
 import com.zw.admin.server.model.RmasRoom;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/rmasRooms")
@@ -30,6 +39,9 @@ public class RmasRoomController {
     @Autowired
     private RmasRoomDao rmasRoomDao;
 
+    @Autowired
+    private DataHandlerService dataService;
+
     @PostMapping
     @ApiOperation(value = "保存")
     @RequiresPermissions("room:add")
@@ -37,6 +49,19 @@ public class RmasRoomController {
         rmasRoomDao.save(rmasRoom);
 
         return rmasRoom;
+    }
+
+    @LogAnnotation
+    @PostMapping("/batchRoom")
+    @ApiOperation(value = "文件上传")
+    public Map<String,String> uploadFile(MultipartFile file) throws IOException {
+        Map<String,String> map = new HashMap<>();
+        InputStream is =  file.getInputStream();
+        FileInputStream stream = (FileInputStream) is;//强转
+        dataService.dataHandler("批量添加宿舍",stream);
+        map.put("code","00");
+        map.put("msg","上传成功");
+        return map;
     }
 
     @GetMapping("/{id}")

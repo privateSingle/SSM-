@@ -1,9 +1,15 @@
 package com.zw.admin.server.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zw.admin.server.annotation.LogAnnotation;
 import com.zw.admin.server.model.User;
+import com.zw.admin.server.service.DataHandlerService;
 import com.zw.admin.server.utils.UserUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +31,7 @@ import com.zw.admin.server.dao.RmasGobackDao;
 import com.zw.admin.server.model.RmasGoback;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/rmasGobacks")
@@ -32,6 +39,9 @@ public class RmasGobackController {
 
     @Autowired
     private RmasGobackDao rmasGobackDao;
+
+    @Autowired
+    private DataHandlerService dataService;
 
     @PostMapping
     @ApiOperation(value = "保存")
@@ -48,6 +58,19 @@ public class RmasGobackController {
     @ApiOperation(value = "根据id获取")
     public RmasGoback get(@PathVariable Long id) {
         return rmasGobackDao.getById(id);
+    }
+
+    @LogAnnotation
+    @PostMapping("/batchRoom")
+    @ApiOperation(value = "文件上传")
+    public Map<String,String> uploadFile(MultipartFile file) throws IOException {
+        Map<String,String> map = new HashMap<>();
+        InputStream is =  file.getInputStream();
+        FileInputStream stream = (FileInputStream) is;//强转
+        dataService.dataHandler("批量添加晚归",stream);
+        map.put("code","00");
+        map.put("msg","上传成功");
+        return map;
     }
 
     @GetMapping("/queren/{id}")

@@ -12,6 +12,7 @@ public class RmasSheshi extends BaseEntity<Long> {
 	private String bxUser;
 	private String tell;
 	private String content;
+	private Integer status;
 
 	public String getTitle() {
 		return title;
@@ -44,4 +45,11 @@ public class RmasSheshi extends BaseEntity<Long> {
 		this.content = content;
 	}
 
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 }

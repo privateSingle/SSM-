@@ -21,6 +21,10 @@
 											编号：
 											<input id="id" type="text" class="form-control" placeholder="id">
 											<button id="searchBt" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe615;</i>搜索</button>
+											&nbsp;
+											<button type="button" class="layui-btn layui-btn-sm" id="test1">
+												<i class="layui-icon">&#xe67c;</i>批量导入
+											</button>
 										</div>
 									</form>
 	                   			</td>
@@ -122,7 +126,7 @@ function init(){
 						return bak;
 					}},
 				{"data" : "createTime", "defaultContent" : ""},
-				{"data" : "updateTime", "defaultContent" : ""},
+				// {"data" : "updateTime", "defaultContent" : ""},
 				{ 
 								"data": "", 
 								"defaultContent": "",
@@ -219,4 +223,17 @@ function queren(id) {
 	});
 
 }
+
+layui.use('upload', function(){
+	var upload = layui.upload;
+	upload.render({
+		elem: '#test1' //绑定元素
+		,accept: 'file' //允许上传的文件类型
+		,url: '/rmasLights/batchRoom' //上传接口
+		,done: function(res, index, upload){
+			layer.msg("上传成功");
+			example.ajax.reload();
+		}
+	});
+});
 </script>

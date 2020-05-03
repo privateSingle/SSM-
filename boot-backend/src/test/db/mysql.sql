@@ -11,7 +11,7 @@
  Target Server Version : 50641
  File Encoding         : 65001
 
- Date: 28/04/2020 09:15:47
+ Date: 03/05/2020 18:24:05
 */
 
 SET NAMES utf8mb4;
@@ -287,7 +287,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- Records of qrtz_scheduler_state
 -- ----------------------------
 BEGIN;
-INSERT INTO `qrtz_scheduler_state` VALUES ('adminQuartzScheduler', 'liushikangdeMacBook-Pro.local1588003968642', 1588004341418, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('adminQuartzScheduler', 'liushikangdeMacBook-Pro.local1588501379609', 1588501421963, 15000);
 COMMIT;
 
 -- ----------------------------
@@ -365,7 +365,7 @@ CREATE TABLE `rmas_asign` (
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for rmas_dian
@@ -381,13 +381,14 @@ CREATE TABLE `rmas_dian` (
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of rmas_dian
 -- ----------------------------
 BEGIN;
 INSERT INTO `rmas_dian` VALUES (2, '18#202', '2020-04-27', '电费', 200.00, 'success', '2020-04-27 21:45:07', '2020-04-27 21:45:07');
+INSERT INTO `rmas_dian` VALUES (3, '17#205', '2020-03-12', '电费', 200.00, '无', '2020-05-03 18:01:41', '2020-05-03 18:01:41');
 COMMIT;
 
 -- ----------------------------
@@ -425,16 +426,20 @@ CREATE TABLE `rmas_goback` (
   `type` varchar(20) DEFAULT NULL,
   `student` varchar(20) DEFAULT NULL,
   `content` text,
+  `gobackCont` varchar(200) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `isCheck` tinyint(4) DEFAULT NULL,
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of rmas_goback
 -- ----------------------------
 BEGIN;
-INSERT INTO `rmas_goback` VALUES (2, '探亲', '2020-04-27', '晚归', 'admin', 'success', '2020-04-27 22:31:05', '2020-04-27 22:31:05');
+INSERT INTO `rmas_goback` VALUES (2, '探亲', '2020-04-27', '晚归', 'admin', 'success', '陪女朋友了', 2, 1, '2020-05-03 00:40:04', '2020-05-03 00:40:04');
+INSERT INTO `rmas_goback` VALUES (4, '17#205', '2020-03-12', '晚归', 'admin', '无', NULL, 1, 0, '2020-05-03 18:09:36', '2020-05-03 18:09:36');
 COMMIT;
 
 -- ----------------------------
@@ -448,16 +453,21 @@ CREATE TABLE `rmas_light` (
   `type` varchar(20) DEFAULT NULL,
   `room` varchar(20) DEFAULT NULL,
   `content` text,
+  `lightCont` varchar(200) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `isCheck` tinyint(4) DEFAULT NULL,
+  `student` varchar(50) DEFAULT NULL,
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of rmas_light
 -- ----------------------------
 BEGIN;
-INSERT INTO `rmas_light` VALUES (2, '18#205', '2020-04-27', '晚熄灯', '205', 'success', '2020-04-27 23:16:20', '2020-04-27 23:16:20');
+INSERT INTO `rmas_light` VALUES (2, '18#205', '2020-04-27', '晚熄灯', '205', 'success', '看书学习~~', 2, 1, 'admin', '2020-05-03 12:39:58', '2020-05-03 12:39:58');
+INSERT INTO `rmas_light` VALUES (5, '17#205', '2020-03-12', '晚熄灯', '205', '无', NULL, 1, 0, 'admin', '2020-05-03 18:23:33', '2020-05-03 18:23:33');
 COMMIT;
 
 -- ----------------------------
@@ -474,13 +484,14 @@ CREATE TABLE `rmas_room` (
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of rmas_room
 -- ----------------------------
 BEGIN;
 INSERT INTO `rmas_room` VALUES (2, '17#202', '17号楼', '202', 4, 'ok', '2020-04-27 18:07:28', '2020-04-27 18:07:28');
+INSERT INTO `rmas_room` VALUES (7, '17#205', '17号楼', '205', 4, '无', '2020-05-03 17:31:18', '2020-05-03 17:31:18');
 COMMIT;
 
 -- ----------------------------
@@ -494,6 +505,7 @@ CREATE TABLE `rmas_sheshi` (
   `bxUser` varchar(20) DEFAULT NULL,
   `tell` varchar(20) DEFAULT NULL,
   `content` text NOT NULL,
+  `status` tinyint(4) DEFAULT NULL,
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -503,7 +515,7 @@ CREATE TABLE `rmas_sheshi` (
 -- Records of rmas_sheshi
 -- ----------------------------
 BEGIN;
-INSERT INTO `rmas_sheshi` VALUES (2, '501宿舍扫把', '2020-04-27', 'admin', '18501231231', 'enen', '2020-04-27 17:07:46', '2020-04-27 17:07:46');
+INSERT INTO `rmas_sheshi` VALUES (2, '501宿舍扫把', '2020-04-27', 'admin', '18501231231', 'enen', 2, '2020-04-27 17:07:46', '2020-04-27 17:07:46');
 COMMIT;
 
 -- ----------------------------
@@ -543,7 +555,7 @@ CREATE TABLE `rmas_sturoom` (
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for rmas_sut_exam
@@ -585,6 +597,38 @@ INSERT INTO `rmas_sut_exam` VALUES (5, 1, '2019年期末考试', '2019-12-31', 1
 COMMIT;
 
 -- ----------------------------
+-- Table structure for rmas_tongji
+-- ----------------------------
+DROP TABLE IF EXISTS `rmas_tongji`;
+CREATE TABLE `rmas_tongji` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(128) NOT NULL,
+  `january` tinyint(4) DEFAULT NULL,
+  `february` tinyint(4) DEFAULT NULL,
+  `march` tinyint(4) DEFAULT NULL,
+  `april` tinyint(4) DEFAULT NULL,
+  `may` tinyint(4) DEFAULT NULL,
+  `june` tinyint(4) DEFAULT NULL,
+  `july` tinyint(4) DEFAULT NULL,
+  `august` tinyint(4) DEFAULT NULL,
+  `september` tinyint(4) DEFAULT NULL,
+  `october` tinyint(4) DEFAULT NULL,
+  `november` tinyint(4) DEFAULT NULL,
+  `december` tinyint(4) DEFAULT NULL,
+  `createTime` datetime NOT NULL,
+  `updateTime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of rmas_tongji
+-- ----------------------------
+BEGIN;
+INSERT INTO `rmas_tongji` VALUES (80, '晚熄灯', 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, '2020-05-03 17:29:08', '2020-05-03 17:29:08');
+INSERT INTO `rmas_tongji` VALUES (81, '晚归', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2020-05-03 17:29:08', '2020-05-03 17:29:08');
+COMMIT;
+
+-- ----------------------------
 -- Table structure for student
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
@@ -617,7 +661,7 @@ CREATE TABLE `sys_logs` (
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   KEY `createTime` (`createTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sys_logs
@@ -743,6 +787,100 @@ INSERT INTO `sys_logs` VALUES (117, 1, '修改菜单', 1, NULL, '2020-04-28 00:1
 INSERT INTO `sys_logs` VALUES (118, 1, '退出', 1, NULL, '2020-04-28 00:18:21');
 INSERT INTO `sys_logs` VALUES (119, 1, 'web端登陆', 1, NULL, '2020-04-28 00:18:31');
 INSERT INTO `sys_logs` VALUES (120, 1, '退出', 1, NULL, '2020-04-28 00:18:59');
+INSERT INTO `sys_logs` VALUES (121, 1, 'web端登陆', 1, NULL, '2020-05-02 09:38:31');
+INSERT INTO `sys_logs` VALUES (122, 1, '根据sql导出excel', 1, NULL, '2020-05-02 09:45:01');
+INSERT INTO `sys_logs` VALUES (123, 1, '根据sql在页面显示结果', 1, NULL, '2020-05-02 09:45:01');
+INSERT INTO `sys_logs` VALUES (124, 1, '保存邮件', 1, NULL, '2020-05-02 10:07:17');
+INSERT INTO `sys_logs` VALUES (125, 1, '生成代码', 1, NULL, '2020-05-02 10:29:25');
+INSERT INTO `sys_logs` VALUES (126, 1, '保存菜单', 1, NULL, '2020-05-02 10:33:30');
+INSERT INTO `sys_logs` VALUES (127, 1, '保存角色', 1, NULL, '2020-05-02 10:33:59');
+INSERT INTO `sys_logs` VALUES (128, 1, 'web端登陆', 1, NULL, '2020-05-02 10:37:30');
+INSERT INTO `sys_logs` VALUES (129, 1, 'web端登陆', 1, NULL, '2020-05-02 12:27:18');
+INSERT INTO `sys_logs` VALUES (130, 1, 'web端登陆', 1, NULL, '2020-05-02 12:30:15');
+INSERT INTO `sys_logs` VALUES (131, 1, 'web端登陆', 1, NULL, '2020-05-02 12:31:59');
+INSERT INTO `sys_logs` VALUES (132, 1, 'web端登陆', 1, NULL, '2020-05-02 21:29:32');
+INSERT INTO `sys_logs` VALUES (133, 1, 'web端登陆', 1, NULL, '2020-05-02 21:33:23');
+INSERT INTO `sys_logs` VALUES (134, 1, 'web端登陆', 1, NULL, '2020-05-02 21:45:31');
+INSERT INTO `sys_logs` VALUES (135, 1, 'web端登陆', 1, NULL, '2020-05-02 21:53:25');
+INSERT INTO `sys_logs` VALUES (136, 1, 'web端登陆', 1, NULL, '2020-05-02 21:58:14');
+INSERT INTO `sys_logs` VALUES (137, 1, 'web端登陆', 1, NULL, '2020-05-02 21:58:58');
+INSERT INTO `sys_logs` VALUES (138, 1, 'web端登陆', 1, NULL, '2020-05-02 22:02:06');
+INSERT INTO `sys_logs` VALUES (139, 1, 'web端登陆', 1, NULL, '2020-05-02 22:06:47');
+INSERT INTO `sys_logs` VALUES (140, 1, 'web端登陆', 1, NULL, '2020-05-02 22:09:06');
+INSERT INTO `sys_logs` VALUES (141, 1, '退出', 1, NULL, '2020-05-02 23:33:22');
+INSERT INTO `sys_logs` VALUES (142, 1, 'web端登陆', 1, NULL, '2020-05-02 23:33:29');
+INSERT INTO `sys_logs` VALUES (143, 1, '保存菜单', 1, NULL, '2020-05-02 23:35:37');
+INSERT INTO `sys_logs` VALUES (144, 1, '修改菜单', 1, NULL, '2020-05-02 23:35:52');
+INSERT INTO `sys_logs` VALUES (145, 1, '保存菜单', 1, NULL, '2020-05-02 23:36:26');
+INSERT INTO `sys_logs` VALUES (146, 1, '保存菜单', 1, NULL, '2020-05-02 23:36:52');
+INSERT INTO `sys_logs` VALUES (147, 1, '保存角色', 1, NULL, '2020-05-02 23:37:10');
+INSERT INTO `sys_logs` VALUES (148, 1, '退出', 1, NULL, '2020-05-02 23:37:12');
+INSERT INTO `sys_logs` VALUES (149, 1, 'web端登陆', 1, NULL, '2020-05-02 23:37:17');
+INSERT INTO `sys_logs` VALUES (150, 1, '修改菜单', 1, NULL, '2020-05-02 23:42:47');
+INSERT INTO `sys_logs` VALUES (151, 1, 'web端登陆', 1, NULL, '2020-05-03 00:01:39');
+INSERT INTO `sys_logs` VALUES (152, 1, 'web端登陆', 1, NULL, '2020-05-03 00:09:29');
+INSERT INTO `sys_logs` VALUES (153, 1, 'web端登陆', 1, NULL, '2020-05-03 00:14:43');
+INSERT INTO `sys_logs` VALUES (154, 1, 'web端登陆', 1, NULL, '2020-05-03 00:32:05');
+INSERT INTO `sys_logs` VALUES (155, 1, 'web端登陆', 1, NULL, '2020-05-03 00:37:44');
+INSERT INTO `sys_logs` VALUES (156, 1, 'web端登陆', 1, NULL, '2020-05-03 00:39:17');
+INSERT INTO `sys_logs` VALUES (157, 1, 'web端登陆', 1, NULL, '2020-05-03 00:49:12');
+INSERT INTO `sys_logs` VALUES (158, 1, 'web端登陆', 1, NULL, '2020-05-03 00:50:56');
+INSERT INTO `sys_logs` VALUES (159, 1, 'web端登陆', 1, NULL, '2020-05-03 00:55:33');
+INSERT INTO `sys_logs` VALUES (160, 1, 'web端登陆', 1, NULL, '2020-05-03 01:21:52');
+INSERT INTO `sys_logs` VALUES (161, 1, 'web端登陆', 1, NULL, '2020-05-03 01:25:13');
+INSERT INTO `sys_logs` VALUES (162, 1, 'web端登陆', 1, NULL, '2020-05-03 01:26:02');
+INSERT INTO `sys_logs` VALUES (163, 1, 'web端登陆', 1, NULL, '2020-05-03 01:31:10');
+INSERT INTO `sys_logs` VALUES (164, 1, '退出', 1, NULL, '2020-05-03 01:31:46');
+INSERT INTO `sys_logs` VALUES (165, 1, 'web端登陆', 1, NULL, '2020-05-03 01:32:05');
+INSERT INTO `sys_logs` VALUES (166, 1, 'web端登陆', 1, NULL, '2020-05-03 10:34:03');
+INSERT INTO `sys_logs` VALUES (167, 1, 'web端登陆', 1, NULL, '2020-05-03 11:46:52');
+INSERT INTO `sys_logs` VALUES (168, 1, '保存菜单', 1, NULL, '2020-05-03 11:48:19');
+INSERT INTO `sys_logs` VALUES (169, 1, '保存菜单', 1, NULL, '2020-05-03 11:48:47');
+INSERT INTO `sys_logs` VALUES (170, 1, '保存角色', 1, NULL, '2020-05-03 11:49:11');
+INSERT INTO `sys_logs` VALUES (171, 1, '退出', 1, NULL, '2020-05-03 11:49:12');
+INSERT INTO `sys_logs` VALUES (172, 1, 'web端登陆', 1, NULL, '2020-05-03 11:49:22');
+INSERT INTO `sys_logs` VALUES (173, 1, 'web端登陆', 1, NULL, '2020-05-03 12:04:18');
+INSERT INTO `sys_logs` VALUES (174, 1, 'web端登陆', 1, NULL, '2020-05-03 12:08:15');
+INSERT INTO `sys_logs` VALUES (175, 1, 'web端登陆', 1, NULL, '2020-05-03 12:20:40');
+INSERT INTO `sys_logs` VALUES (176, 1, 'web端登陆', 1, NULL, '2020-05-03 12:24:55');
+INSERT INTO `sys_logs` VALUES (177, 1, '修改菜单', 1, NULL, '2020-05-03 12:28:01');
+INSERT INTO `sys_logs` VALUES (178, 1, 'web端登陆', 1, NULL, '2020-05-03 12:39:41');
+INSERT INTO `sys_logs` VALUES (179, 1, 'web端登陆', 1, NULL, '2020-05-03 12:44:57');
+INSERT INTO `sys_logs` VALUES (180, 1, '修改菜单', 1, NULL, '2020-05-03 12:55:35');
+INSERT INTO `sys_logs` VALUES (181, 1, 'web端登陆', 1, NULL, '2020-05-03 13:16:06');
+INSERT INTO `sys_logs` VALUES (182, 1, 'web端登陆', 1, NULL, '2020-05-03 13:16:45');
+INSERT INTO `sys_logs` VALUES (183, 1, 'web端登陆', 1, NULL, '2020-05-03 13:36:19');
+INSERT INTO `sys_logs` VALUES (184, 1, 'web端登陆', 1, NULL, '2020-05-03 13:50:24');
+INSERT INTO `sys_logs` VALUES (185, 1, '保存菜单', 1, NULL, '2020-05-03 13:57:44');
+INSERT INTO `sys_logs` VALUES (186, 1, '保存角色', 1, NULL, '2020-05-03 13:58:04');
+INSERT INTO `sys_logs` VALUES (187, 1, '退出', 1, NULL, '2020-05-03 13:58:07');
+INSERT INTO `sys_logs` VALUES (188, 1, 'web端登陆', 1, NULL, '2020-05-03 13:58:13');
+INSERT INTO `sys_logs` VALUES (189, 1, 'web端登陆', 1, NULL, '2020-05-03 14:35:50');
+INSERT INTO `sys_logs` VALUES (190, 1, 'web端登陆', 1, NULL, '2020-05-03 15:37:54');
+INSERT INTO `sys_logs` VALUES (191, 1, 'web端登陆', 1, NULL, '2020-05-03 15:52:10');
+INSERT INTO `sys_logs` VALUES (192, 1, 'web端登陆', 1, NULL, '2020-05-03 15:52:31');
+INSERT INTO `sys_logs` VALUES (193, 1, 'web端登陆', 1, NULL, '2020-05-03 16:34:26');
+INSERT INTO `sys_logs` VALUES (194, 1, 'web端登陆', 1, NULL, '2020-05-03 17:08:34');
+INSERT INTO `sys_logs` VALUES (195, 1, '文件上传', 1, NULL, '2020-05-03 17:08:44');
+INSERT INTO `sys_logs` VALUES (196, 1, '文件上传', 1, NULL, '2020-05-03 17:09:08');
+INSERT INTO `sys_logs` VALUES (197, 1, 'web端登陆', 1, NULL, '2020-05-03 17:12:49');
+INSERT INTO `sys_logs` VALUES (198, 1, '文件上传', 1, NULL, '2020-05-03 17:13:06');
+INSERT INTO `sys_logs` VALUES (199, 1, '文件上传', 1, NULL, '2020-05-03 17:23:42');
+INSERT INTO `sys_logs` VALUES (200, 1, 'web端登陆', 1, NULL, '2020-05-03 17:28:44');
+INSERT INTO `sys_logs` VALUES (201, 1, '文件上传', 1, NULL, '2020-05-03 17:29:28');
+INSERT INTO `sys_logs` VALUES (202, 1, 'web端登陆', 1, NULL, '2020-05-03 18:01:07');
+INSERT INTO `sys_logs` VALUES (203, 1, '文件上传', 1, NULL, '2020-05-03 18:01:40');
+INSERT INTO `sys_logs` VALUES (204, 1, '文件上传', 1, NULL, '2020-05-03 18:02:30');
+INSERT INTO `sys_logs` VALUES (205, 1, 'web端登陆', 1, NULL, '2020-05-03 18:05:39');
+INSERT INTO `sys_logs` VALUES (206, 1, '文件上传', 1, NULL, '2020-05-03 18:06:00');
+INSERT INTO `sys_logs` VALUES (207, 1, '文件上传', 1, NULL, '2020-05-03 18:09:35');
+INSERT INTO `sys_logs` VALUES (208, 1, '文件上传', 1, NULL, '2020-05-03 18:12:56');
+INSERT INTO `sys_logs` VALUES (209, 1, 'web端登陆', 1, NULL, '2020-05-03 18:15:33');
+INSERT INTO `sys_logs` VALUES (210, 1, '文件上传', 1, NULL, '2020-05-03 18:16:06');
+INSERT INTO `sys_logs` VALUES (211, 1, 'web端登陆', 1, NULL, '2020-05-03 18:21:27');
+INSERT INTO `sys_logs` VALUES (212, 1, '文件上传', 1, NULL, '2020-05-03 18:21:41');
+INSERT INTO `sys_logs` VALUES (213, 1, 'web端登陆', 1, NULL, '2020-05-03 18:23:10');
+INSERT INTO `sys_logs` VALUES (214, 1, '文件上传', 1, NULL, '2020-05-03 18:23:33');
 COMMIT;
 
 -- ----------------------------
@@ -759,7 +897,7 @@ CREATE TABLE `sys_permission` (
   `permission` varchar(50) DEFAULT NULL,
   `sort` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sys_permission
@@ -785,7 +923,7 @@ INSERT INTO `sys_permission` VALUES (18, 16, '删除', '', '', 2, 'sys:file:del'
 INSERT INTO `sys_permission` VALUES (19, 0, '数据源监控', 'fa-eye', 'druid/index.html', 1, '', 9);
 INSERT INTO `sys_permission` VALUES (20, 0, '接口swagger', 'fa-file-pdf-o', 'swagger-ui.html', 1, '', 10);
 INSERT INTO `sys_permission` VALUES (21, 0, '代码生成', 'fa-wrench', 'pages/generate/edit.html', 1, 'generate:edit', 11);
-INSERT INTO `sys_permission` VALUES (22, 0, '公告管理', 'fa-book', 'pages/notice/noticeList.html', 1, '', 12);
+INSERT INTO `sys_permission` VALUES (22, 0, '公告/发帖管理', 'fa-book', 'pages/notice/noticeList.html', 1, '', 12);
 INSERT INTO `sys_permission` VALUES (23, 22, '查询', '', '', 2, 'notice:query', 100);
 INSERT INTO `sys_permission` VALUES (24, 22, '添加', '', '', 2, 'notice:add', 100);
 INSERT INTO `sys_permission` VALUES (25, 22, '删除', '', '', 2, 'notice:del', 100);
@@ -840,6 +978,13 @@ INSERT INTO `sys_permission` VALUES (73, 72, '查询', '', '', 2, 'sturoom:query
 INSERT INTO `sys_permission` VALUES (74, 72, '新增', '', '', 2, 'sturoom:add', 100);
 INSERT INTO `sys_permission` VALUES (75, 72, '修改', '', '', 2, 'sturoom:update', 100);
 INSERT INTO `sys_permission` VALUES (76, 72, '删除', '', '', 2, 'sturoom:del', 100);
+INSERT INTO `sys_permission` VALUES (77, 41, '统计管理', 'fa-sliders', '/pages/tongji/rmasTongjiList.html', 1, '', 100);
+INSERT INTO `sys_permission` VALUES (78, 41, '学生端晚归管理', 'fa-check', '/pages/goback/rmasGobackListToStu.html', 1, '', 100);
+INSERT INTO `sys_permission` VALUES (79, 78, '查询', '', '', 2, 'goback:query', 100);
+INSERT INTO `sys_permission` VALUES (80, 78, '修改', '', '', 2, 'goback:updateToStu', 100);
+INSERT INTO `sys_permission` VALUES (81, 41, '学生端晚熄灯管理', '', '/pages/light/rmasLightListToStu.html', 1, '', 100);
+INSERT INTO `sys_permission` VALUES (82, 81, '修改', '', '', 2, 'light:updateToStu', 100);
+INSERT INTO `sys_permission` VALUES (83, 42, '处理确认', '', '', 2, 'sheshi:queren', 100);
 COMMIT;
 
 -- ----------------------------
@@ -860,7 +1005,7 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_role` VALUES (1, '管理员', '管理员', '2017-05-01 13:25:39', '2020-04-28 00:10:56');
+INSERT INTO `sys_role` VALUES (1, '管理员', '管理员', '2017-05-01 13:25:39', '2020-05-03 13:58:04');
 INSERT INTO `sys_role` VALUES (2, '教师', '教师', '2017-08-01 21:47:31', '2020-04-24 12:27:44');
 INSERT INTO `sys_role` VALUES (3, '学生', '学生', '2020-04-24 12:28:00', '2020-04-24 12:28:00');
 COMMIT;
@@ -953,6 +1098,13 @@ INSERT INTO `sys_role_permission` VALUES (1, 73);
 INSERT INTO `sys_role_permission` VALUES (1, 74);
 INSERT INTO `sys_role_permission` VALUES (1, 75);
 INSERT INTO `sys_role_permission` VALUES (1, 76);
+INSERT INTO `sys_role_permission` VALUES (1, 77);
+INSERT INTO `sys_role_permission` VALUES (1, 78);
+INSERT INTO `sys_role_permission` VALUES (1, 79);
+INSERT INTO `sys_role_permission` VALUES (1, 80);
+INSERT INTO `sys_role_permission` VALUES (1, 81);
+INSERT INTO `sys_role_permission` VALUES (1, 82);
+INSERT INTO `sys_role_permission` VALUES (1, 83);
 INSERT INTO `sys_role_permission` VALUES (2, 1);
 INSERT INTO `sys_role_permission` VALUES (2, 2);
 INSERT INTO `sys_role_permission` VALUES (2, 3);
@@ -1081,7 +1233,7 @@ CREATE TABLE `t_job` (
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `jobName` (`jobName`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for t_mail
@@ -1095,7 +1247,14 @@ CREATE TABLE `t_mail` (
   `createTime` datetime NOT NULL,
   `updateTime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of t_mail
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_mail` VALUES (1, 1, 'e', 'test<img src=\"http://localhost:8080/layui/images/face/25.gif\" alt=\"[抱抱]\">', '2020-05-02 10:07:17', '2020-05-02 10:07:17');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_mail_to
@@ -1107,7 +1266,14 @@ CREATE TABLE `t_mail_to` (
   `toUser` varchar(128) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1成功，0失败',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of t_mail_to
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_mail_to` VALUES (1, 1, '18501723710@163.com', 0);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_notice

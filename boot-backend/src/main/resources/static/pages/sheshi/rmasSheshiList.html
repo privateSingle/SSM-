@@ -47,6 +47,7 @@
 									<th>保修人</th>
 									<th>电话</th>
 									<th>备注</th>
+									<th>状态</th>
 									<th>创建时间</th>
 									<th>修改时间</th>
 									<th>操作</th>
@@ -97,6 +98,18 @@ function init(){
 				{"data" : "bxUser", "defaultContent" : ""},
 				{"data" : "tell", "defaultContent" : ""},
 				{"data" : "content", "defaultContent" : ""},
+				{"data" : "status", "defaultContent" : "",
+					"render": function (data, type, row) {
+						var sta = row['status'];
+						if(sta == 1){
+							sta = "已完成";
+						}else if(sta == 0) {
+							sta = "待处理";
+						}else if(sta == 2) {
+							sta = "已处理";
+						}
+						return sta;
+					}},
 				{"data" : "createTime", "defaultContent" : ""},
 				{"data" : "updateTime", "defaultContent" : ""},
 				{ 
@@ -105,10 +118,17 @@ function init(){
 								"orderable":false,
 						        "render": function (data, type, row) {
                 		           var id = row['id'];
+                		           var sta = row['status'];//1已完成 0 待处理 2已处理
                 		           var href = "updateRmasSheshi.html?id=" + id;
                                    var edit = buttonEdit(href, "", pers);
                 		           var del = buttonDel(id, "", pers);
-                                   return edit + del;
+                		           var sign = buttonSign(id, "", pers);
+                		           if(sta == 0) {
+									   return edit + del + sign;
+								   }else {
+									   return edit + del;
+								   }
+
                   	            }		
 							},
                 

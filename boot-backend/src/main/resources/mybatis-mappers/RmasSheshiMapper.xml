@@ -63,6 +63,9 @@
 			<if test="content != null">
 				content = #{content}, 
 			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
 			<if test="createTime != null">
 				createTime = #{createTime}, 
 			</if>

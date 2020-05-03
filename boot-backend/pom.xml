@@ -137,6 +137,11 @@
 			<artifactId>poi</artifactId>
 			<version>${poi.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
 		<!-- 集群下，启用session共享时，需打开 -->
 		<!-- <dependency>
 			<groupId>org.springframework.session</groupId>

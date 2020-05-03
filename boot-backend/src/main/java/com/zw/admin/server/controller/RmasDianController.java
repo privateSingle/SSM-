@@ -1,7 +1,14 @@
 package com.zw.admin.server.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.zw.admin.server.annotation.LogAnnotation;
+import com.zw.admin.server.service.DataHandlerService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +29,7 @@ import com.zw.admin.server.dao.RmasDianDao;
 import com.zw.admin.server.model.RmasDian;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/rmasDians")
@@ -29,6 +37,9 @@ public class RmasDianController {
 
     @Autowired
     private RmasDianDao rmasDianDao;
+
+    @Autowired
+    private DataHandlerService dataService;
 
     @PostMapping
     @ApiOperation(value = "保存")
@@ -43,6 +54,19 @@ public class RmasDianController {
     @ApiOperation(value = "根据id获取")
     public RmasDian get(@PathVariable Long id) {
         return rmasDianDao.getById(id);
+    }
+
+    @LogAnnotation
+    @PostMapping("/batchRoom")
+    @ApiOperation(value = "文件上传")
+    public Map<String,String> uploadFile(MultipartFile file) throws IOException {
+        Map<String,String> map = new HashMap<>();
+        InputStream is =  file.getInputStream();
+        FileInputStream stream = (FileInputStream) is;//强转
+        dataService.dataHandler("批量添加费用",stream);
+        map.put("code","00");
+        map.put("msg","上传成功");
+        return map;
     }
 
     @PutMapping

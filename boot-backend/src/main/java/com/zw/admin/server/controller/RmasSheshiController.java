@@ -2,6 +2,7 @@ package com.zw.admin.server.controller;
 
 import java.util.List;
 
+import com.zw.admin.server.model.RmasLight;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +35,7 @@ public class RmasSheshiController {
     @ApiOperation(value = "保存")
     @RequiresPermissions("sheshi:add")
     public RmasSheshi save(@RequestBody RmasSheshi rmasSheshi) {
+        rmasSheshi.setStatus(0);//待处理
         rmasSheshiDao.save(rmasSheshi);
 
         return rmasSheshi;
@@ -43,6 +45,17 @@ public class RmasSheshiController {
     @ApiOperation(value = "根据id获取")
     public RmasSheshi get(@PathVariable Long id) {
         return rmasSheshiDao.getById(id);
+    }
+
+    @GetMapping("/sign/{id}")
+    @ApiOperation(value = "确认信息")
+    @RequiresPermissions("sheshi:queren")
+    public void queren(@PathVariable Long id) {
+        RmasSheshi sheshi =  rmasSheshiDao.getById(id);
+        if(sheshi != null) {
+            sheshi.setStatus(2);//已处理
+            rmasSheshiDao.update(sheshi);
+        }
     }
 
     @PutMapping

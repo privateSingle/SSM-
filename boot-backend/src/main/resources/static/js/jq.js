@@ -28,6 +28,32 @@ function buttonDel(data, permission, pers){
 	var btn = $("<button class='layui-btn layui-btn-xs' title='删除' onclick='del(\"" + data +"\")'><i class='layui-icon'>&#xe640;</i></button>");
 	return btn.prop("outerHTML");
 }
+function buttonSign(data, permission, pers){
+	if(permission != ""){
+		if ($.inArray(permission, pers) < 0) {
+			return "";
+		}
+	}
+
+	var btn = $("<button class='layui-btn layui-btn-xs' title='标记' onclick='signHandler(\"" + data +"\")'><i class='layui-icon'>处理</i></button>");
+	return btn.prop("outerHTML");
+}
+
+function signHandler(id) {
+	if(confirm('是否标记已处理？')){
+		$.ajax({
+			type : 'get',
+			url : '/rmasSheshis/sign/'+id,
+			async : false,
+			success : function(data) {
+				layer.msg("处理成功", {shift: -1, time: 1000}, function(){
+					location.href = "/pages/sheshi/rmasSheshiList.html";
+				});
+			}
+		});
+	}
+
+}
 
 function buttonEdit(href, permission, pers){
 	if(permission != ""){

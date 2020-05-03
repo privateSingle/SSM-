@@ -24,7 +24,7 @@ public interface RmasLightDao {
     int update(RmasLight rmasLight);
     
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into rmas_light(title, date, type, room, content, createTime, updateTime, status, isCheck) values(#{title}, #{date}, #{type}, #{room}, #{content}, #{createTime}, #{updateTime}, #{status}, #{isCheck})")
+    @Insert("insert into rmas_light(title, date, type, room, content, createTime, updateTime, status, isCheck, student) values(#{title}, #{date}, #{type}, #{room}, #{content}, #{createTime}, #{updateTime}, #{status}, #{isCheck}, #{student})")
     int save(RmasLight rmasLight);
     
     int count(@Param("params") Map<String, Object> params);

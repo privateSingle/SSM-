@@ -1,10 +1,16 @@
 package com.zw.admin.server.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zw.admin.server.annotation.LogAnnotation;
 import com.zw.admin.server.model.RmasGoback;
 import com.zw.admin.server.model.User;
+import com.zw.admin.server.service.DataHandlerService;
 import com.zw.admin.server.utils.UserUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +32,7 @@ import com.zw.admin.server.dao.RmasLightDao;
 import com.zw.admin.server.model.RmasLight;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/rmasLights")
@@ -33,6 +40,9 @@ public class RmasLightController {
 
     @Autowired
     private RmasLightDao rmasLightDao;
+
+    @Autowired
+    private DataHandlerService dataService;
 
     @PostMapping
     @ApiOperation(value = "保存")
@@ -43,6 +53,19 @@ public class RmasLightController {
         rmasLightDao.save(rmasLight);
 
         return rmasLight;
+    }
+
+    @LogAnnotation
+    @PostMapping("/batchRoom")
+    @ApiOperation(value = "文件上传")
+    public Map<String,String> uploadFile(MultipartFile file) throws IOException {
+        Map<String,String> map = new HashMap<>();
+        InputStream is =  file.getInputStream();
+        FileInputStream stream = (FileInputStream) is;//强转
+        dataService.dataHandler("批量添加晚熄灯",stream);
+        map.put("code","00");
+        map.put("msg","上传成功");
+        return map;
     }
 
     @GetMapping("/{id}")
